@@ -13,26 +13,45 @@ interface CalendarMonthProps {
   currentDate?: string;
   selectedDate?: string;
   onSelectDay?: (date: string) => void;
+  onChangeMonth?: (newMonth: string) => void;
 }
 
 const weekdays = ["Pon", "Wt", "Śr", "Czw", "Pt", "Sob", "Nd"];
 
-export function CalendarMonth({ month, days, venueSlug, currentDate, selectedDate, onSelectDay }: CalendarMonthProps) {
+export function CalendarMonth({ month, days, venueSlug, currentDate, selectedDate, onSelectDay, onChangeMonth }: CalendarMonthProps) {
   const cells = buildCalendarCells(month, days);
+  const previousMonth = addMonths(month, -1);
+  const nextMonth = addMonths(month, 1);
+  const previousHref = `/venues/${venueSlug}/calendar?month=${previousMonth}`;
+  const nextHref = `/venues/${venueSlug}/calendar?month=${nextMonth}`;
+  const navButtonClass =
+    "flex h-8 w-8 items-center justify-center rounded-full border border-line bg-white text-ink transition-air hover:-translate-y-0.5 hover:border-air-blue";
+
+  const handleNav = (target: string) => (event: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!onChangeMonth) return;
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
+    event.preventDefault();
+    onChangeMonth(target);
+  };
+
   return (
     <section className="mobile-calendar-scale">
       <div className="mb-2 grid grid-cols-[34px_1fr_34px] items-center sm:grid-cols-[38px_1fr_38px]">
         <Link
-          href={`/venues/${venueSlug}/calendar?month=${addMonths(month, -1)}`}
-          className="flex h-8 w-8 items-center justify-center rounded-full border border-line bg-white text-ink transition-air hover:-translate-y-0.5 hover:border-air-blue"
+          href={previousHref}
+          prefetch={false}
+          onClick={handleNav(previousMonth)}
+          className={navButtonClass}
           aria-label="Poprzedni miesiąc"
         >
           <ChevronLeft className="h-4 w-4" strokeWidth={1.5} />
         </Link>
         <h2 className="text-center font-display text-[20px] font-extrabold leading-none tracking-[-0.04em] text-ink sm:text-[24px]">{formatMonthTitle(month)}</h2>
         <Link
-          href={`/venues/${venueSlug}/calendar?month=${addMonths(month, 1)}`}
-          className="flex h-8 w-8 items-center justify-center justify-self-end rounded-full border border-line bg-white text-ink transition-air hover:-translate-y-0.5 hover:border-air-blue"
+          href={nextHref}
+          prefetch={false}
+          onClick={handleNav(nextMonth)}
+          className={`${navButtonClass} justify-self-end`}
           aria-label="Następny miesiąc"
         >
           <ChevronRight className="h-4 w-4" strokeWidth={1.5} />

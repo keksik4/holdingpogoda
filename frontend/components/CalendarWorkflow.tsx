@@ -1,13 +1,16 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ArrowRight, CalendarDays, Database } from "lucide-react";
 import { CalendarMonth } from "@/components/CalendarMonth";
+import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { RiskDot } from "@/components/RiskDot";
 import { VenueSwitcher } from "@/components/VenueSwitcher";
 import { WeatherIcon } from "@/components/WeatherIcon";
-import { formatDateLabel, formatVisitors, relationLabel, riskLabel, riskTone, translateBackendText } from "@/lib/formatting";
+import { addMonths, formatDateLabel, formatVisitors, relationLabel, riskLabel, riskTone, translateBackendText } from "@/lib/formatting";
+import { getCachedCalendar, loadCalendar, primeCalendar } from "@/lib/clientApi";
 import type { CalendarDay, CalendarResponse, VenueSummary } from "@/lib/types";
 
 interface CalendarWorkflowProps {
@@ -17,16 +20,62 @@ interface CalendarWorkflowProps {
   currentDate: string;
 }
 
-export function CalendarWorkflow({ calendar, venues, venueSlug, currentDate }: CalendarWorkflowProps) {
-  const initialSelectedDate = calendar.days.find((day) => day.date === currentDate)?.date ?? calendar.days[0]?.date;
-  const [selectedDate, setSelectedDate] = useState(initialSelectedDate);
+export function CalendarWorkflow({ calendar: initialCalendar, venues, venueSlug, currentDate }: CalendarWorkflowProps) {
+  const router = useRouter();
+  const [calendar, setCalendar] = useState<CalendarResponse>(initialCalendar);
+  const [loading, setLoading] = useState(false);
+  const [selectedDate, setSelectedDate] = useState<string | undefined>(() => pickInitialDate(initialCalendar.days, currentDate));
+  const requestId = useRef(0);
+
+  useEffect(() => {
+    primeCalendar(venueSlug, initialCalendar.month, initialCalendar);
+    setCalendar(initialCalendar);
+    setSelectedDate(pickInitialDate(initialCalendar.days, currentDate));
+  }, [initialCalendar, venueSlug, currentDate]);
+
+  useEffect(() => {
+    const adjacent = [addMonths(calendar.month, 1), addMonths(calendar.month, -1)];
+    adjacent.forEach((month) => {
+      if (getCachedCalendar(venueSlug, month)) return;
+      void loadCalendar(venueSlug, month).catch(() => {});
+    });
+  }, [calendar.month, venueSlug]);
+
   const selectedDay = useMemo(
     () => calendar.days.find((day) => day.date === selectedDate) ?? pickSelectedDay(calendar.days, currentDate),
     [calendar.days, currentDate, selectedDate]
   );
 
+  const changeMonth = async (target: string) => {
+    if (target === calendar.month) return;
+    const requestNumber = ++requestId.current;
+    const cached = getCachedCalendar(venueSlug, target);
+    const url = `/venues/${venueSlug}/calendar?month=${target}`;
+
+    if (cached) {
+      setCalendar(cached);
+      setSelectedDate(pickInitialDate(cached.days, currentDate));
+      router.replace(url, { scroll: false });
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const data = await loadCalendar(venueSlug, target);
+      if (requestNumber !== requestId.current) return;
+      setCalendar(data);
+      setSelectedDate(pickInitialDate(data.days, currentDate));
+      router.replace(url, { scroll: false });
+    } catch {
+      router.push(url);
+    } finally {
+      if (requestNumber === requestId.current) setLoading(false);
+    }
+  };
+
   return (
     <section className="mt-2">
+      <LoadingOverlay visible={loading} />
       <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
         <VenueSwitcher venues={venues} selectedSlug={venueSlug} />
         <div className="flex shrink-0 items-center gap-2">
@@ -52,6 +101,7 @@ export function CalendarWorkflow({ calendar, venues, venueSlug, currentDate }: C
               currentDate={currentDate}
               selectedDate={selectedDay?.date}
               onSelectDay={setSelectedDate}
+              onChangeMonth={changeMonth}
             />
           </div>
         </div>
@@ -72,6 +122,10 @@ export function CalendarWorkflow({ calendar, venues, venueSlug, currentDate }: C
       </div>
     </section>
   );
+}
+
+function pickInitialDate(days: CalendarDay[], currentDate: string): string | undefined {
+  return days.find((day) => day.date === currentDate)?.date ?? days[0]?.date;
 }
 
 function pickSelectedDay(days: CalendarDay[], currentDate: string): CalendarDay | undefined {
