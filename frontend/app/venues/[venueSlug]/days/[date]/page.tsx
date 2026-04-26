@@ -37,7 +37,7 @@ export default async function DayDetailsPage({ params }: DayDetailsPageProps) {
   return (
     <>
       <AppHeader active="forecasts" compact />
-      <main className="product-screen product-screen-fit overflow-hidden">
+      <main className="product-screen">
         <FallbackBanner visible={isFallback} message={detailsResult.error} />
 
         <nav className="mb-2 flex items-center gap-2 font-body text-[11px] text-ink-soft">

@@ -25,7 +25,7 @@ export default async function CalendarPage({ params, searchParams }: CalendarPag
   return (
     <>
       <AppHeader active="forecasts" compact />
-      <main className="product-screen product-screen-fit overflow-hidden">
+      <main className="product-screen">
         <FallbackBanner visible={isFallback} message={calendarResult.error ?? venuesResult.error} />
 
         <section className="grid grid-cols-1 items-center gap-3 lg:grid-cols-[1fr_360px]">
