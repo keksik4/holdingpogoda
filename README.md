@@ -230,3 +230,4 @@ This proof of concept clearly separates:
 - manually managed assets.
 
 Real internal attendance data can replace calibrated demo attendance later through the backend import/data pipeline.
+"# holdingpogoda" 
