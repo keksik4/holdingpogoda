@@ -1,0 +1,96 @@
+object_id,profile_id,hour,start_time,end_time,share_of_daily_visitors,occupancy_index,notes,source_refs,confidence
+fala,weekday_standard_09_22,9,09:00,10:00,0.04,0.31,"niski start, segment spokojny","S01,S02",0.62
+fala,weekday_standard_09_22,10,10:00,11:00,0.05,0.38,niski ruch roboczy,"S01,S02",0.62
+fala,weekday_standard_09_22,11,11:00,12:00,0.05,0.38,niski ruch roboczy,"S01,S02",0.62
+fala,weekday_standard_09_22,12,12:00,13:00,0.06,0.46,niski do sredniego,"S01,S02",0.62
+fala,weekday_standard_09_22,13,13:00,14:00,0.06,0.46,niski do sredniego,"S01,S02",0.62
+fala,weekday_standard_09_22,14,14:00,15:00,0.07,0.54,wejscia po poludniu,"S01,S02",0.62
+fala,weekday_standard_09_22,15,15:00,16:00,0.08,0.62,narastanie,"S01,S02",0.62
+fala,weekday_standard_09_22,16,16:00,17:00,0.11,0.85,start szczytu po pracy,"S01,S02",0.62
+fala,weekday_standard_09_22,17,17:00,18:00,0.13,1.0,"szczyt roboczy, sekcje i powroty z pracy","S01,S02",0.62
+fala,weekday_standard_09_22,18,18:00,19:00,0.13,1.0,"szczyt roboczy, sauny jesien-zima","S01,S02",0.62
+fala,weekday_standard_09_22,19,19:00,20:00,0.1,0.77,"wysoko, ale zaczyna spadac","S01,S02",0.62
+fala,weekday_standard_09_22,20,20:00,21:00,0.07,0.54,"spadek, dobre okno dla klienta","S01,S02",0.62
+fala,weekday_standard_09_22,21,21:00,22:00,0.05,0.38,ostatnia godzina,"S01,S02",0.62
+fala,weekday_morning_swim_07_22,7,07:00,08:00,0.0254,0.2,"poranne plywanie, niski wolumen, sport","S01,S02",0.6
+fala,weekday_morning_swim_07_22,8,08:00,09:00,0.0203,0.16,koniec porannego okna,"S01,S02",0.6
+fala,weekday_morning_swim_07_22,9,09:00,10:00,0.0355,0.28,,"S01,S02",0.6
+fala,weekday_morning_swim_07_22,10,10:00,11:00,0.0457,0.36,,"S01,S02",0.6
+fala,weekday_morning_swim_07_22,11,11:00,12:00,0.0457,0.36,,"S01,S02",0.6
+fala,weekday_morning_swim_07_22,12,12:00,13:00,0.0558,0.44,,"S01,S02",0.6
+fala,weekday_morning_swim_07_22,13,13:00,14:00,0.0558,0.44,,"S01,S02",0.6
+fala,weekday_morning_swim_07_22,14,14:00,15:00,0.066,0.52,,"S01,S02",0.6
+fala,weekday_morning_swim_07_22,15,15:00,16:00,0.0761,0.6,,"S01,S02",0.6
+fala,weekday_morning_swim_07_22,16,16:00,17:00,0.1066,0.84,start szczytu,"S01,S02",0.6
+fala,weekday_morning_swim_07_22,17,17:00,18:00,0.1269,1.0,szczyt,"S01,S02",0.6
+fala,weekday_morning_swim_07_22,18,18:00,19:00,0.1269,1.0,szczyt,"S01,S02",0.6
+fala,weekday_morning_swim_07_22,19,19:00,20:00,0.0964,0.76,wysoko,"S01,S02",0.6
+fala,weekday_morning_swim_07_22,20,20:00,21:00,0.066,0.52,spadek,"S01,S02",0.6
+fala,weekday_morning_swim_07_22,21,21:00,22:00,0.0509,0.4,ostatnia godzina,"S01,S02",0.6
+fala,weekend_holiday_standard_09_22,9,09:00,10:00,0.05,0.38,najlepsze okno na wejscie,"S01,S02",0.65
+fala,weekend_holiday_standard_09_22,10,10:00,11:00,0.07,0.54,narastanie,"S01,S02",0.65
+fala,weekend_holiday_standard_09_22,11,11:00,12:00,0.09,0.69,wejscia rodzinne,"S01,S02",0.65
+fala,weekend_holiday_standard_09_22,12,12:00,13:00,0.12,0.92,start wysokiego oblozenia,"S01,S02",0.65
+fala,weekend_holiday_standard_09_22,13,13:00,14:00,0.13,1.0,szczyt,"S01,S02",0.65
+fala,weekend_holiday_standard_09_22,14,14:00,15:00,0.13,1.0,szczyt,"S01,S02",0.65
+fala,weekend_holiday_standard_09_22,15,15:00,16:00,0.12,0.92,wysoko,"S01,S02",0.65
+fala,weekend_holiday_standard_09_22,16,16:00,17:00,0.1,0.77,wysoko,"S01,S02",0.65
+fala,weekend_holiday_standard_09_22,17,17:00,18:00,0.08,0.62,spadek,"S01,S02",0.65
+fala,weekend_holiday_standard_09_22,18,18:00,19:00,0.05,0.38,spadek,"S01,S02",0.65
+fala,weekend_holiday_standard_09_22,19,19:00,20:00,0.03,0.23,dobre okno,"S01,S02",0.65
+fala,weekend_holiday_standard_09_22,20,20:00,21:00,0.02,0.15,dobre okno,"S01,S02",0.65
+fala,weekend_holiday_standard_09_22,21,21:00,22:00,0.01,0.08,niski ogon,"S01,S02",0.65
+fala,summer_hot_external_zone_08_22,8,08:00,09:00,0.04,0.33,"wakacyjne wczesne wejscia, rodziny z dziecmi","S01,S05,S06",0.62
+fala,summer_hot_external_zone_08_22,9,09:00,10:00,0.06,0.5,narastanie,"S01,S05,S06",0.62
+fala,summer_hot_external_zone_08_22,10,10:00,11:00,0.08,0.67,kolejki start,"S01,S05,S06",0.62
+fala,summer_hot_external_zone_08_22,11,11:00,12:00,0.1,0.83,wysoko,"S01,S05,S06",0.62
+fala,summer_hot_external_zone_08_22,12,12:00,13:00,0.11,0.92,szczyt,"S01,S05,S06",0.62
+fala,summer_hot_external_zone_08_22,13,13:00,14:00,0.12,1.0,szczyt,"S01,S05,S06",0.62
+fala,summer_hot_external_zone_08_22,14,14:00,15:00,0.12,1.0,szczyt,"S01,S05,S06",0.62
+fala,summer_hot_external_zone_08_22,15,15:00,16:00,0.11,0.92,wysoko,"S01,S05,S06",0.62
+fala,summer_hot_external_zone_08_22,16,16:00,17:00,0.09,0.75,wysoko,"S01,S05,S06",0.62
+fala,summer_hot_external_zone_08_22,17,17:00,18:00,0.07,0.58,spadek,"S01,S05,S06",0.62
+fala,summer_hot_external_zone_08_22,18,18:00,19:00,0.05,0.42,spadek,"S01,S05,S06",0.62
+fala,summer_hot_external_zone_08_22,19,19:00,20:00,0.03,0.25,dobre okno po upale,"S01,S05,S06",0.62
+fala,summer_hot_external_zone_08_22,20,20:00,21:00,0.015,0.12,nisko,"S01,S05,S06",0.62
+fala,summer_hot_external_zone_08_22,21,21:00,22:00,0.005,0.04,niski ogon,"S01,S05,S06",0.62
+orientarium,weekday_school_trip_season_09_19,9,09:00,10:00,0.06,0.4,"najlepsze okno, obiekt dopiero sie napelnia","S01,S07,S08",0.65
+orientarium,weekday_school_trip_season_09_19,10,10:00,11:00,0.12,0.8,start grup szkolnych,"S01,S07,S08",0.65
+orientarium,weekday_school_trip_season_09_19,11,11:00,12:00,0.14,0.93,slonie - krytyczny zator,"S01,S07,S08",0.65
+orientarium,weekday_school_trip_season_09_19,12,12:00,13:00,0.14,0.93,fala po sloniach,"S01,S07,S08",0.65
+orientarium,weekday_school_trip_season_09_19,13,13:00,14:00,0.15,1.0,orangutany - drugie waskie gardlo,"S01,S07,S08",0.65
+orientarium,weekday_school_trip_season_09_19,14,14:00,15:00,0.12,0.8,spadek po karmieniach,"S01,S07,S08",0.65
+orientarium,weekday_school_trip_season_09_19,15,15:00,16:00,0.1,0.67,stabilnie,"S01,S07,S08",0.65
+orientarium,weekday_school_trip_season_09_19,16,16:00,17:00,0.08,0.53,spadek,"S01,S07,S08",0.65
+orientarium,weekday_school_trip_season_09_19,17,17:00,18:00,0.06,0.4,"slonie, lokalny pik","S01,S07,S08",0.65
+orientarium,weekday_school_trip_season_09_19,18,18:00,19:00,0.03,0.2,ostatnie wejscia i odplyw,"S01,S07,S08",0.65
+orientarium,weekday_quiet_09_19,9,09:00,10:00,0.08,0.62,dobre wejscie,"S01,S07,S08",0.58
+orientarium,weekday_quiet_09_19,10,10:00,11:00,0.1,0.77,narastanie,"S01,S07,S08",0.58
+orientarium,weekday_quiet_09_19,11,11:00,12:00,0.13,1.0,slonie - lokalny pik,"S01,S07,S08",0.58
+orientarium,weekday_quiet_09_19,12,12:00,13:00,0.13,1.0,wysoko,"S01,S07,S08",0.58
+orientarium,weekday_quiet_09_19,13,13:00,14:00,0.13,1.0,orangutany - lokalny pik,"S01,S07,S08",0.58
+orientarium,weekday_quiet_09_19,14,14:00,15:00,0.12,0.92,stabilnie,"S01,S07,S08",0.58
+orientarium,weekday_quiet_09_19,15,15:00,16:00,0.1,0.77,spadek,"S01,S07,S08",0.58
+orientarium,weekday_quiet_09_19,16,16:00,17:00,0.08,0.62,spadek,"S01,S07,S08",0.58
+orientarium,weekday_quiet_09_19,17,17:00,18:00,0.08,0.62,slonie - mniejszy pik,"S01,S07,S08",0.58
+orientarium,weekday_quiet_09_19,18,18:00,19:00,0.05,0.38,wyjscia,"S01,S07,S08",0.58
+orientarium,weekend_holiday_09_19,9,09:00,10:00,0.07,0.44,najlepsze okno,"S01,S07,S08",0.68
+orientarium,weekend_holiday_09_19,10,10:00,11:00,0.11,0.69,szybkie napelnianie,"S01,S07,S08",0.68
+orientarium,weekend_holiday_09_19,11,11:00,12:00,0.16,1.0,slonie - krytyczny zator,"S01,S07,S08",0.68
+orientarium,weekend_holiday_09_19,12,12:00,13:00,0.15,0.94,wysoko,"S01,S07,S08",0.68
+orientarium,weekend_holiday_09_19,13,13:00,14:00,0.15,0.94,orangutany - bardzo wysoko,"S01,S07,S08",0.68
+orientarium,weekend_holiday_09_19,14,14:00,15:00,0.13,0.81,wysoko,"S01,S07,S08",0.68
+orientarium,weekend_holiday_09_19,15,15:00,16:00,0.1,0.62,stabilnie,"S01,S07,S08",0.68
+orientarium,weekend_holiday_09_19,16,16:00,17:00,0.07,0.44,spadek,"S01,S07,S08",0.68
+orientarium,weekend_holiday_09_19,17,17:00,18:00,0.05,0.31,slonie - drugi pik,"S01,S07,S08",0.68
+orientarium,weekend_holiday_09_19,18,18:00,19:00,0.01,0.06,odplyw,"S01,S07,S08",0.68
+orientarium,summer_tourism_09_19,9,09:00,10:00,0.07,0.47,rekomendowane wejscie,"S01,S07,S08,S09",0.66
+orientarium,summer_tourism_09_19,10,10:00,11:00,0.12,0.8,wysoka turystyka,"S01,S07,S08,S09",0.66
+orientarium,summer_tourism_09_19,11,11:00,12:00,0.15,1.0,slonie - krytyczny pik,"S01,S07,S08,S09",0.66
+orientarium,summer_tourism_09_19,12,12:00,13:00,0.15,1.0,wysoko,"S01,S07,S08,S09",0.66
+orientarium,summer_tourism_09_19,13,13:00,14:00,0.15,1.0,orangutany - bardzo wysoko,"S01,S07,S08,S09",0.66
+orientarium,summer_tourism_09_19,14,14:00,15:00,0.14,0.93,wysoko,"S01,S07,S08,S09",0.66
+orientarium,summer_tourism_09_19,15,15:00,16:00,0.11,0.73,spadek,"S01,S07,S08,S09",0.66
+orientarium,summer_tourism_09_19,16,16:00,17:00,0.07,0.47,spadek,"S01,S07,S08,S09",0.66
+orientarium,summer_tourism_09_19,17,17:00,18:00,0.03,0.2,"slonie, ale slabiej niz 11:00","S01,S07,S08,S09",0.66
+orientarium,summer_tourism_09_19,18,18:00,19:00,0.01,0.07,odplyw,"S01,S07,S08,S09",0.66

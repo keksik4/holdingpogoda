@@ -1,0 +1,62 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local environment files and secrets
+.env
+.env.*
+!.env.example
+frontend/.env.local
+frontend/.env.*.local
+backend_vercel/.env
+backend_vercel/.env.*
+!backend_vercel/.env.example
+
+# Node / Next.js
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/*.tsbuildinfo
+frontend/.vercel/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Vercel local metadata
+.vercel/
+backend_vercel/.vercel/
+
+# Local database and generated runtime data
+data/airlines.db
+data/*.db
+data/raw/weather/*.json
+data/raw/business/uploaded_*.csv
+data/raw/business/*_attendance_sample_*.csv
+data/raw/business/*_events_sample_*.csv
+data/raw/business/*_campaigns_sample_*.csv
+data/processed/features_*.csv
+data/processed/google_trends/*.csv
+data/processed/weather_cache/
+backend_vercel/data/processed/weather_cache/
+backend_vercel/backend_vercel/
+
+# Local test artifacts
+tmp/
+tmp-screens/
+tmp-edge*/
+*.log
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/

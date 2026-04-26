@@ -1,0 +1,11 @@
+.vercel
+__pycache__
+*.pyc
+../.venv
+../frontend
+../local_preview
+../tmp
+../data/airlines.db
+../data/raw
+../data/processed/weather_cache
+../data/processed/google_trends

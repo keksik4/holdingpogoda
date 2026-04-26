@@ -1,0 +1,25 @@
+object_id,month,month_factor,notes,source_refs,confidence
+fala,01,0.9,"styczen stabilny, sauny silne; 117k w styczniu 2025 daje ok. 0.91 sredniego miesiaca rocznego","S01,S03,S04,S05,S06",0.62
+fala,02,1.15,ferie zimowe i ruch rodzinny; PDF wskazuje +60% na basenach w ferie,"S01,S03,S04,S05,S06",0.62
+fala,03,0.85,po feriach spokojniej,"S01,S03,S04,S05,S06",0.62
+fala,04,0.95,"wiosenne odbicie, swieta wielkanocne zalezne od kalendarza","S01,S03,S04,S05,S06",0.62
+fala,05,1.3,Majowka i start strefy zewnetrznej zaleznie od pogody,"S01,S03,S04,S05,S06",0.62
+fala,06,1.45,"koniec szkoly, Boze Cialo, poczatek lata","S01,S03,S04,S05,S06",0.62
+fala,07,1.9,"wakacje i cieplo, najwyzsza wrazliwosc na temperature","S01,S03,S04,S05,S06",0.62
+fala,08,1.85,"wakacje, nadal bardzo wysoki popyt","S01,S03,S04,S05,S06",0.62
+fala,09,0.9,"powrot do szkoly, mocny spadek rodzinny","S01,S03,S04,S05,S06",0.62
+fala,10,0.85,"tryb roboczy, sauny zaczynaja przejmowac wieczor","S01,S03,S04,S05,S06",0.62
+fala,11,0.82,"nizsza baza, wieczorne sauny","S01,S03,S04,S05,S06",0.62
+fala,12,1.05,"Christmas break, zimowe wizyty rodzinne i sauny","S01,S03,S04,S05,S06",0.62
+orientarium,01,0.45,niski miesiac wzgledem potencjalnej bazy 2025; 47k w styczniu,"S01,S04,S09,S12",0.6
+orientarium,02,0.75,"ferie zimowe, ale ruch rozproszony","S01,S04,S09,S12",0.6
+orientarium,03,0.85,"wczesna wiosna, mniej turystow","S01,S04,S09,S12",0.6
+orientarium,04,1.05,"wiosna, wydluzone godziny, wycieczki","S01,S04,S09,S12",0.6
+orientarium,05,1.2,szczyt wycieczek szkolnych i weekendy,"S01,S04,S09,S12",0.6
+orientarium,06,1.25,wycieczki plus poczatek wakacji,"S01,S04,S09,S12",0.6
+orientarium,07,1.55,"turystyka ogolnopolska, wysokie wakacyjne oblozenie","S01,S04,S09,S12",0.6
+orientarium,08,1.63,"sierpien 2025 >190k, najlepszy miesiac od otwarcia","S01,S04,S09,S12",0.6
+orientarium,09,1.1,"turysci jeszcze obecni, mniej szkol","S01,S04,S09,S12",0.6
+orientarium,10,0.95,"spadek po wakacjach, komfortowe zwiedzanie","S01,S04,S09,S12",0.6
+orientarium,11,0.75,niskie kolejki i swobodny dostep,"S01,S04,S09,S12",0.6
+orientarium,12,0.78,Christmas break podnosi koniec miesiaca,"S01,S04,S09,S12",0.6

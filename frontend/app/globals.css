@@ -1,0 +1,217 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: #082a57;
+  --ink-soft: #58719a;
+  --paper: #fbfdff;
+  --line: #dce9f5;
+  --brand-blue: #1264f5;
+  --air-blue: #1264f5;
+  --air-teal: #138fa0;
+  --risk-orange: #ec7844;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background: #fbfcff;
+  color: var(--ink);
+  font-family: Aptos, "Segoe UI", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 84% 8%, rgba(109, 165, 222, 0.15), transparent 31rem),
+    radial-gradient(circle at 50% 104%, rgba(18, 100, 245, 0.07), transparent 28rem),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(251, 253, 255, 0.99));
+  z-index: -1;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: auto 0 0;
+  height: 34vh;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(251, 253, 255, 0), rgba(251, 253, 255, 0.86)),
+    repeating-linear-gradient(8deg, transparent 0 42px, rgba(109, 165, 222, 0.06) 43px, transparent 44px);
+  z-index: -1;
+}
+
+::selection {
+  background: rgba(23, 149, 168, 0.16);
+}
+
+@layer components {
+  .transition-air {
+    transition-property: color, background-color, border-color, transform, opacity, box-shadow;
+    transition-duration: 260ms;
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .soft-panel {
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 18px 62px -50px rgba(13, 43, 87, 0.42);
+  }
+
+  .page-shell {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1.5rem 3rem;
+  }
+
+  .product-screen {
+    width: 100%;
+    max-width: 1440px;
+    min-height: calc(100dvh - 84px);
+    margin: 0 auto;
+    padding: 0 1.5rem 1rem;
+  }
+
+  .product-screen-fit {
+    min-height: calc(100dvh - 66px);
+    max-height: calc(100dvh - 66px);
+  }
+
+  .metric-card {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 12px 42px -36px rgba(13, 43, 87, 0.45);
+  }
+
+  .fade-in {
+    animation: fade-in 180ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .editorial-title {
+    font-family: Aptos, "Segoe UI", system-ui, sans-serif;
+    letter-spacing: -0.06em;
+    font-weight: 800;
+    color: var(--ink);
+  }
+
+  .line-card {
+    border: 1px solid rgba(220, 233, 245, 0.95);
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 16px 56px -48px rgba(13, 43, 87, 0.46);
+  }
+}
+
+.workflow-connector {
+  display: none;
+}
+
+@media (min-width: 1280px) {
+  .workflow-connector {
+    position: absolute;
+    top: 1.45rem;
+    left: calc(50% + 2.1rem);
+    display: block;
+    width: calc(100% - 4.2rem);
+    height: 1px;
+    overflow: hidden;
+    background: linear-gradient(90deg, rgba(18, 100, 245, 0.15), rgba(18, 100, 245, 0.5), rgba(18, 100, 245, 0.15));
+  }
+
+  .workflow-connector::after {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 -36%;
+    width: 36%;
+    background: linear-gradient(90deg, transparent, rgba(19, 143, 160, 0.72), transparent);
+    animation: workflow-signal 2.8s cubic-bezier(0.45, 0, 0.2, 1) infinite;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes workflow-signal {
+  0% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  18% {
+    opacity: 1;
+  }
+  82% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(380%);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
+  }
+}
+
+@media (max-width: 767px) {
+  body::after {
+    height: 22vh;
+  }
+
+  .page-shell {
+    padding: 0 0.85rem 2rem;
+  }
+
+  .product-screen {
+    min-height: auto;
+    padding: 0 0.45rem 1rem;
+  }
+
+  .product-screen-fit {
+    max-height: none;
+    overflow: visible;
+  }
+
+  .mobile-calendar-scale {
+    width: 118%;
+    transform: scale(0.847);
+    transform-origin: top left;
+    margin-right: -18%;
+    margin-bottom: -4.8rem;
+  }
+}

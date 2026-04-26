@@ -1,0 +1,19 @@
+object_id,dow,dow_factor,notes,confidence
+fala,mon,0.75,"Nizszy dzien roboczy, brak porannego plywania w modelu standardowym.",0.55
+fala,tue,0.82,"Dzien roboczy, poranne plywanie niszowe.",0.55
+fala,wed,0.88,"Dzien roboczy, lekko wyzszy popyt niz wtorek.",0.55
+fala,thu,0.95,"Przed weekendem, wieczory saunowe.",0.55
+fala,fri,1.15,Piatek i dluzsza sauna do 23:30.,0.6
+fala,sat,1.55,"Weekend rodzinny, szczyt od poludnia.",0.7
+fala,sun,1.5,"Weekend rodzinny, krotszy wieczor niz sobota.",0.7
+fala,public_holiday,1.7,"Majowka, Boze Cialo i dlugie weekendy moga dobic do przepustowosci juz od 11:00.",0.65
+fala,bridge_day,1.55,"Dzien pomostowy przy swiecie, szczegolnie przy dobrej pogodzie.",0.55
+orientarium,mon,0.7,"Niski ruch poza wakacjami, brak typowego weekendowego impulsu.",0.55
+orientarium,tue,0.95,"Normalny dzien, w sezonie wycieczek szkolnych podbijac do 1.10.",0.58
+orientarium,wed,0.98,"Normalny dzien, w sezonie wycieczek szkolnych podbijac do 1.15.",0.58
+orientarium,thu,0.98,"Normalny dzien, w sezonie wycieczek szkolnych podbijac do 1.15.",0.58
+orientarium,fri,1.0,Dzien przejsciowy przed weekendem.,0.58
+orientarium,sat,1.65,Najwyzszy regularny popyt rodzinny i turystyczny.,0.7
+orientarium,sun,1.55,"Wysoki popyt rodzinny, mniej wycieczek grupowych.",0.68
+orientarium,public_holiday,1.8,"Dlugie weekendy i ferie, wysoki ruch od 10:30.",0.65
+orientarium,bridge_day,1.65,Turystyka krajowa i lokalna.,0.58

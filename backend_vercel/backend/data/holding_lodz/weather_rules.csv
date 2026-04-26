@@ -1,0 +1,10 @@
+object_id,feature,condition,min_multiplier,max_multiplier,notes,source_refs,confidence
+fala,temperature_max_c_gt_25,if max_temp_c > 25 and precip_prob < 40,1.35,1.75,"Goraco uruchamia popyt zewnetrzny. PDF wskazuje do +250% jako upper bound, ale w modelu priory powinny byc capowane do czasu kalibracji.","S01,S05,S06",0.58
+fala,temperature_max_c_gt_30,if max_temp_c > 30 and storm_risk < 0.3,1.1,1.25,"Dodatkowy impuls, ale przy ekstremalnym upale czesc rodzin przesuwa wejscie na rano lub wieczor.",S01,0.45
+fala,storm_risk_high,if storm_risk >= 0.6,0.55,0.75,"Najwiekszy negatywny czynnik dla strefy zewnetrznej, kolejek i komfortu wejscia.",model_prior,0.45
+fala,moderate_rain_warm,if rain_mm > 1 and max_temp_c > 20,0.8,1.0,"Odcina czesc zewnetrzna, ale obiekt nadal dziala wewnatrz.","S01,S05",0.45
+fala,cold_evening_sauna,if max_temp_c < 10 and hour between 17 and 21,1.1,1.35,Zimowe i jesienne wieczory wzmacniaja sauny.,"S01,S02",0.55
+orientarium,rain_or_cold,if rain_prob > 50 or max_temp_c < 8,1.05,1.15,Orientarium ma pawilony ogrzewane i jest mniej wrazliwe na zla pogode.,S07,0.52
+orientarium,severe_storm,if storm_risk >= 0.6,0.8,0.9,Ryzyko dojazdu i decyzji rodzinnych moze zejsc nizej mimo atrakcji wewnetrznych.,model_prior,0.4
+orientarium,sunny_weekend_mild,if 12 <= max_temp_c <= 26 and precip_prob < 30 and weekend,1.1,1.25,Dobra pogoda wzmacnia ogrod zewnetrzny i wyjazdy rodzinne.,"S07,S08",0.5
+orientarium,heat_gt_30,if max_temp_c > 30,0.95,1.05,"Ogrody moga tracic komfort, ale turystyka wakacyjna utrzymuje wolumen.",S09,0.45

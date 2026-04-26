@@ -1,0 +1,12 @@
+object_id,window_id,applies_to,start_time,end_time,window_type,notes,source_refs,confidence
+fala,pool_standard,all,09:00,22:00,standard,Strefa basenowa. Sauny maja osobne okna.,S02,0.95
+fala,morning_swim_standard,tue-fri_except_holidays,07:00,08:30,standard,"Niska frekwencja, segment sportowy i regularni uzytkownicy.",S02,0.95
+fala,sauna_mon_thu,mon-thu,11:00,22:00,standard,Wieczory zimowe sa kluczowe dla oblozenia.,"S02,S01",0.9
+fala,sauna_fri,fri,11:00,23:30,standard,Piatkowy wydluzony ogon popytu.,S02,0.9
+fala,sauna_sat,sat,09:00,23:00,standard,"09:00-10:00 saunowanie dla dzieci w wybranych terminach, standard 10:00-23:00.",S02,0.9
+fala,sauna_sun_holiday,sun_holiday,09:00,22:00,standard,"Dzien rodzinny, wysokie obciazenie od poludnia.",S02,0.9
+fala,external_zone_may_weather_based,may,09:00,22:00,seasonal,W maju strefa zewnetrzna uruchamiana codziennie lub weekendowo zaleznie od pogody.,S05,0.7
+fala,pool_summer_prior,summer_school_break,08:00,22:00,seasonal_prior,Historyczna zasada 2025: wakacyjnie godzine wczesniej od zakonczenia roku szkolnego.,S06,0.7
+orientarium,visitor_standard,all,09:00,19:00,standard,"Ostatnie wejscie 18:00, pawilony do 18:45.","S07,S08",0.95
+orientarium,cashdesk,all,09:00,18:00,standard,"Po 18:00 brak nowego wejscia, modelowac odplyw.",S07,0.95
+orientarium,pavilions_close,all,18:45,18:45,standard,Od 18:00-19:00 raczej wyjscia niz nowe wejscia.,"S07,S08",0.9

@@ -1,0 +1,15 @@
+<svg width="900" height="380" viewBox="0 0 900 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M84 282H832" stroke="#AFC6E4" stroke-width="1.2" opacity=".5"/>
+  <path d="M128 282V190C128 154 158 124 194 124H392C438 124 474 160 474 206V282H128Z" stroke="#8FACD1" stroke-width="1.4"/>
+  <path d="M154 282V196C154 170 176 148 202 148H382C414 148 448 174 448 208V282" stroke="#8FACD1" stroke-width="1" opacity=".75"/>
+  <path d="M180 282V156M230 282V132M280 282V132M330 282V132M380 282V150" stroke="#B8CBE6" stroke-width="1"/>
+  <path d="M112 220C188 202 360 202 488 222" stroke="#B8CBE6" stroke-width="1"/>
+  <path d="M488 126C568 64 728 68 776 140C826 214 732 258 646 240" stroke="#8FACD1" stroke-width="1.45"/>
+  <path d="M560 104C654 118 720 164 656 202" stroke="#8FACD1" stroke-width="1.25"/>
+  <path d="M620 78C704 92 790 128 786 186" stroke="#B8CBE6" stroke-width="1.1"/>
+  <path d="M612 282V238M636 282V226M660 282V238" stroke="#8FACD1" stroke-width="1.2"/>
+  <path d="M386 320C420 334 514 334 548 320L574 282H360L386 320Z" fill="#CBEFF0" stroke="#0F8A98" stroke-width="2"/>
+  <path d="M462 282V252M462 252L488 278M462 252L436 278" stroke="#0F8A98" stroke-width="1.7"/>
+  <path d="M96 108C112 90 142 92 151 114C168 110 184 120 188 136H76C78 124 86 114 96 108Z" stroke="#B8CBE6" stroke-width="1.1"/>
+  <path d="M686 54C696 46 708 46 718 54M732 66C742 58 754 58 764 66" stroke="#8FACD1" stroke-width="1.1"/>
+</svg>

@@ -1,0 +1,24 @@
+[
+  {
+    "asset_key": "aquapark_fala_primary",
+    "venue_slug": "aquapark_fala",
+    "asset_type": "venue_photo",
+    "local_path": "public/venues/aquapark-fala.jpg",
+    "source_url": "https://aquapark.lodz.pl/",
+    "source_name": "Aquapark Fala official website",
+    "attribution": "Local project asset. Confirm source permission/license before public production use.",
+    "license_notes": "Good for local proof-of-concept preview; confirm permission before deployment or external publication.",
+    "usage_status": "manual_asset_available"
+  },
+  {
+    "asset_key": "orientarium_zoo_lodz_primary",
+    "venue_slug": "orientarium_zoo_lodz",
+    "asset_type": "venue_photo",
+    "local_path": "public/venues/orientarium.jpg",
+    "source_url": "https://zoo.lodz.pl/",
+    "source_name": "Orientarium Zoo \u0141\u00f3d\u017a official website",
+    "attribution": "Local project asset. Confirm source permission/license before public production use.",
+    "license_notes": "Good for local proof-of-concept preview; confirm permission before deployment or external publication.",
+    "usage_status": "manual_asset_available"
+  }
+]

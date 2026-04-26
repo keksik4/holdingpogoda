@@ -1,0 +1,6 @@
+date_start,date_end,campaign_name,channel,budget_pln,target_segment,message_type,expected_impact,notes
+2025-11-15,2025-12-10,DEMO spring warm-up,social,7000,families,early season offer,0.08,clearly fake sample campaign
+2026-02-08,2026-03-10,DEMO weather-proof fun,search,9500,teens and groups,indoor backup message,0.11,clearly fake sample campaign
+2026-04-12,2026-05-04,DEMO short-term family boost,social,5200,families,weekend weather push,0.09,clearly fake sample campaign
+2026-05-14,2026-06-13,DEMO summer pre-sale,newsletter,12000,season-pass prospects,sunny day bundle,0.13,clearly fake sample campaign
+2026-07-03,2026-08-12,DEMO groups and companies,display,16000,corporate groups,weather-stable group planning,0.1,clearly fake sample campaign

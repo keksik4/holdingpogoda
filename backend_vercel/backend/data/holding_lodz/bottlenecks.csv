@@ -1,0 +1,11 @@
+object_id,time,event,local_multiplier,crowd_status,notes,source_refs,confidence
+orientarium,10:00,Papuga Kea,1.05,niski,Obiekt dopiero sie napelnia. Dobry czas na spokojne wejscie.,S01,0.65
+orientarium,11:00,Slonie - kapiel i karmienie,1.45,krytyczny,Najwiekszy zator. Modelowac wysokie lokalne zagestszczenie 10:45-11:25.,"S01,S07",0.72
+orientarium,11:30,Kapibary,1.25,wysoki,Przejscie fali po sloniach.,S01,0.65
+orientarium,12:00,Wyderki orientalne / leniuchowce,1.2,wysoki,Rozproszenie po pawilonach.,S01,0.65
+orientarium,13:00,Orangutany,1.35,bardzo wysoki,Drugie najwieksze waskie gardlo.,S01,0.7
+orientarium,17:30,Slonie - popoludniowy pokaz,1.2,wysoki,"Mniejszy niz 11:00, ale widoczny lokalny pik.","S01,S07",0.62
+fala,09:00-10:00,Weekendowy start,0.75,niski,"Najlepsze okno wejscia, szczegolnie latem.",S01,0.6
+fala,11:00-14:00,Weekend / swieto / goraco,1.35,krytyczny,"Zatory na wejsciu, w szatniach i przy atrakcjach.","S01,S05,S06",0.65
+fala,16:00-19:00,Dzien roboczy,1.3,wysoki,"Powroty z pracy, sekcje plywackie, sauna jesien-zima.",S01,0.62
+fala,20:00-22:00,Wieczor letni lub po pracy,0.85,sredni-niski,"Dobre okno dla komfortu, poza eventami i piatkiem w saunach.","S01,S02",0.55

@@ -1,0 +1,9 @@
+object_id,feature,condition,effect_type,multiplier_or_overlay,notes,source_refs,confidence
+fala,lodzkie_winter_break,2026-02-02 to 2026-02-15,daily_multiplier,1.6,PDF wskazuje +60% ruchu na basenach w ferie.,"S01,S10",0.7
+fala,school_summer_break,2026-06-27 to 2026-08-31,daily_multiplier,1.35,"Wakacje zwiekszaja baze, a pogoda robi dodatkowy mnoznik.","S06,S11",0.62
+fala,majowka_or_corpus_christi,public holiday / bridge day,daily_multiplier,1.7,Oblozenie moze dochodzic do 100% juz od 11:00.,"S01,S05",0.58
+fala,naturist_night_or_special_event,event_calendar,override,1.0,Nie mnozyc automatycznie bez flagi. Zdarzenie zmienia segment i dostepnosc czesci obiektu.,S01,0.55
+orientarium,school_trip_season,mar-jun tue-thu 10:00-13:00,hourly_overlay,1.25,Przedpoludnia wt.-czw. wypelnione grupami szkolnymi.,S01,0.6
+orientarium,summer_tourism,jul-aug,daily_multiplier,1.55,Sierpien 2025 przekroczyl 190 tys. osob.,S09,0.7
+orientarium,feeding_events,according_to_daily_schedule,hourly_overlay,1.2,Karmienia tworza waskie gardla i migracje tlumu.,"S01,S07",0.65
+orientarium,public_holiday_or_bridge,public holiday / bridge day,daily_multiplier,1.8,Rodzinny i turystyczny pik od 10:30 do 16:00.,S01,0.58

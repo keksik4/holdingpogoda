@@ -1,0 +1,36 @@
+[
+  {
+    "venue_slug": "aquapark_fala",
+    "name": "Aquapark Fala",
+    "type": "mixed indoor/outdoor aquapark",
+    "city": "\u0141\u00f3d\u017a",
+    "address": "al. Unii Lubelskiej 4, 94-208 \u0141\u00f3d\u017a",
+    "latitude": 51.7596,
+    "longitude": 19.4156,
+    "description": "Large aquapark and recreation venue with indoor pools, outdoor summer zones, wellness, sauna, gastronomy and family attractions.",
+    "weather_profile": "mixed_weather_sensitive",
+    "seasonality_profile": "high summer peak, strong weekends and public holidays, winter indoor resilience",
+    "visitor_benchmark_notes": "Calibrated from public benchmark assumptions: approximately 1.5M visitors in 2024 and more than 0.5M visitors during summer 2025. Exact daily attendance is not public.",
+    "operational_areas": ["entry queues", "lifeguards", "outdoor pools", "indoor pools", "sauna/wellness", "gastro", "parking", "cleaning"],
+    "marketing_segments": ["families", "teenagers", "students", "tourists", "wellness visitors", "summer day-trip visitors"],
+    "image_asset_key": "aquapark_fala_primary",
+    "data_quality_status": "public benchmarks plus calibrated demo attendance"
+  },
+  {
+    "venue_slug": "orientarium_zoo_lodz",
+    "name": "Orientarium Zoo \u0141\u00f3d\u017a",
+    "type": "zoo and indoor-outdoor attraction",
+    "city": "\u0141\u00f3d\u017a",
+    "address": "ul. Konstantynowska 8/10, 94-303 \u0141\u00f3d\u017a",
+    "latitude": 51.7638,
+    "longitude": 19.4108,
+    "description": "Zoo and Orientarium complex with outdoor animal areas, indoor Southeast Asia themed exhibits, education, gastronomy and family tourism appeal.",
+    "weather_profile": "outdoor_heavy_with_indoor_resilience",
+    "seasonality_profile": "spring and summer tourism peak, strong weekends, public holidays and school trip effect, indoor resilience in poor weather",
+    "visitor_benchmark_notes": "Calibrated from public benchmark assumptions: close to 1M visitors in 2024 and more than 200k visitors in August 2025. Exact daily attendance is not public.",
+    "operational_areas": ["ticketing", "entry queues", "animal exhibits", "indoor Orientarium", "outdoor paths", "education groups", "gastro", "parking"],
+    "marketing_segments": ["families", "tourists", "school groups", "animal lovers", "weekend visitors", "city-break visitors"],
+    "image_asset_key": "orientarium_zoo_lodz_primary",
+    "data_quality_status": "public benchmarks plus calibrated demo attendance"
+  }
+]

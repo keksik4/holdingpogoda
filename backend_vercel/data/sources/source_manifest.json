@@ -1,0 +1,102 @@
+[
+  {
+    "source_key": "aquapark_fala_official_contact",
+    "source_name": "Aquapark Fala official contact page",
+    "source_url": "https://aquapark.lodz.pl/cennik/kontakt/",
+    "source_type": "official_venue_profile",
+    "venue_slug": "aquapark_fala",
+    "provides": ["address", "official website identity"],
+    "confidence_level": "high",
+    "exact_or_estimated": "exact venue profile data"
+  },
+  {
+    "source_key": "aquapark_fala_lodz_travel_profile",
+    "source_name": "Łódź Travel Aquapark Fala profile",
+    "source_url": "https://lodz.travel/en/tourism/what-to-see/green-lodz/sports-and-recreation/aquapark-fala/",
+    "source_type": "public_venue_profile",
+    "venue_slug": "aquapark_fala",
+    "provides": ["description", "attraction categories", "indoor/outdoor profile"],
+    "confidence_level": "high",
+    "exact_or_estimated": "descriptive public profile"
+  },
+  {
+    "source_key": "orientarium_official_profile",
+    "source_name": "Orientarium Zoo Łódź official website",
+    "source_url": "https://zoo.lodz.pl/",
+    "source_type": "official_venue_profile",
+    "venue_slug": "orientarium_zoo_lodz",
+    "provides": ["address", "official website identity", "venue profile"],
+    "confidence_level": "high",
+    "exact_or_estimated": "exact venue profile data"
+  },
+  {
+    "source_key": "lodz_pl_2024_attendance_benchmarks",
+    "source_name": "ŁÓDŹ.PL attendance benchmark article",
+    "source_url": "https://lodz.pl/artykul/rekordy-w-orientarium-zoo-lodz-i-aquaparku-fala-ile-osob-odwiedzilo-zdrowie-66002/",
+    "source_type": "public_benchmark",
+    "venue_slug": "all",
+    "provides": ["Aquapark Fala 2024 benchmark", "Orientarium Zoo Łódź 2024 benchmark", "January 2025 signals"],
+    "confidence_level": "high",
+    "exact_or_estimated": "public approximate benchmark"
+  },
+  {
+    "source_key": "radio_lodz_orientarium_august_2025",
+    "source_name": "Radio Łódź August 2025 Orientarium attendance article",
+    "source_url": "https://radiolodz.pl/rekordowy-miesiac-lodzkiego-zoo-prawie-200-tysiecy-odwiedzajacych%2C546350/",
+    "source_type": "public_benchmark",
+    "venue_slug": "orientarium_zoo_lodz",
+    "provides": ["August 2025 monthly attendance benchmark", "tourism share signal"],
+    "confidence_level": "medium",
+    "exact_or_estimated": "public approximate benchmark"
+  },
+  {
+    "source_key": "aquapark_fala_summer_2025_assumption",
+    "source_name": "Product benchmark assumption",
+    "source_url": "",
+    "source_type": "benchmark_assumption_needs_confirmation",
+    "venue_slug": "aquapark_fala",
+    "provides": ["summer 2025 attendance calibration anchor"],
+    "confidence_level": "medium",
+    "exact_or_estimated": "estimated calibration assumption"
+  },
+  {
+    "source_key": "open_meteo",
+    "source_name": "Open-Meteo APIs",
+    "source_url": "https://open-meteo.com/en/docs",
+    "source_type": "real_weather_api",
+    "venue_slug": "all",
+    "provides": ["forecast weather", "historical weather", "historical forecasts"],
+    "confidence_level": "high",
+    "exact_or_estimated": "real API data"
+  },
+  {
+    "source_key": "met_no",
+    "source_name": "MET Norway Locationforecast API",
+    "source_url": "https://api.met.no/weatherapi/locationforecast/2.0/documentation",
+    "source_type": "real_weather_api",
+    "venue_slug": "all",
+    "provides": ["independent weather forecast"],
+    "confidence_level": "high",
+    "exact_or_estimated": "real API data"
+  },
+  {
+    "source_key": "imgw",
+    "source_name": "IMGW public data API",
+    "source_url": "https://danepubliczne.imgw.pl/pl/apiinfo",
+    "source_type": "real_weather_api",
+    "venue_slug": "all",
+    "provides": ["official Polish observations where available"],
+    "confidence_level": "medium",
+    "exact_or_estimated": "real API data with field availability limits"
+  },
+  {
+    "source_key": "nager_date",
+    "source_name": "Nager.Date public holidays",
+    "source_url": "https://date.nager.at/Api",
+    "source_type": "real_holiday_api",
+    "venue_slug": "all",
+    "provides": ["Polish public holidays"],
+    "confidence_level": "high",
+    "exact_or_estimated": "real public holiday data"
+  }
+]

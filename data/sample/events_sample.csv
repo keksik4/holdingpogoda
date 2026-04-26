@@ -1,0 +1,9 @@
+date,event_name,expected_impact,event_type,indoor_or_outdoor,notes
+2025-12-03,Spring family opening,0.18,seasonal,outdoor,DEMO event
+2026-01-23,Outdoor music afternoon,0.24,concert,outdoor,DEMO event
+2026-02-27,Rainy day indoor tournament,0.16,competition,indoor,DEMO event
+2026-04-03,Weekend food trucks,0.21,food,mixed,DEMO event
+2026-04-29,Forecast-aware family weekend,0.2,family,mixed,DEMO future event
+2026-05-11,Indoor challenge day,0.14,competition,indoor,DEMO future event
+2026-06-07,Summer preview festival,0.26,festival,outdoor,DEMO future event
+2026-07-16,Late summer night opening,0.19,special_hours,mixed,DEMO future event

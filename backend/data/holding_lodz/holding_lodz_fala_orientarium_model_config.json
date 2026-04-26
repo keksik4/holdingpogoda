@@ -1,0 +1,1999 @@
+{
+  "metadata": {
+    "project": "Pogoda w Lodzi",
+    "report_date": "2026-04-24",
+    "scope": "Aquapark Fala Lodz and Orientarium ZOO Lodz - hourly occupancy priors for attendance forecasting",
+    "units": {
+      "share_of_daily_visitors": "fraction of predicted daily visitors assigned to hour bucket",
+      "occupancy_index": "hourly relative index within profile, 1.00 equals highest hour in that profile",
+      "multipliers": "multiplicative factors to be applied with caps and calibrated later"
+    },
+    "critical_note": "All numbers are operational priors, not final measured telemetry. Replace baselines with ticket/POS turnstile data when available."
+  },
+  "baselines": [
+    {
+      "object_id": "fala",
+      "object_name": "Aquapark Fala Lodz",
+      "annual_visitors_primary": 1550000,
+      "primary_year": 2025,
+      "avg_daily_primary": 4247,
+      "known_month_1": "2025-01",
+      "known_month_visitors_1": 117000,
+      "known_month_daily_avg_1": 3774,
+      "known_month_2": "",
+      "known_month_visitors_2": "",
+      "known_month_daily_avg_2": "",
+      "recommended_base_daily": 4247,
+      "source_refs": "S01,S03,S04",
+      "confidence": 0.85,
+      "notes": "Bazowa wartosc dzienna powinna zostac zastapiona rolling average z kas po integracji danych."
+    },
+    {
+      "object_id": "orientarium",
+      "object_name": "Orientarium ZOO Lodz",
+      "annual_visitors_primary": 1400000,
+      "primary_year": 2025,
+      "avg_daily_primary": 3836,
+      "known_month_1": "2025-01",
+      "known_month_visitors_1": 47000,
+      "known_month_daily_avg_1": 1516,
+      "known_month_2": "2025-08",
+      "known_month_visitors_2": 190000,
+      "known_month_daily_avg_2": 6129,
+      "recommended_base_daily": 3836,
+      "source_refs": "S01,S04,S09,S12",
+      "confidence": 0.65,
+      "notes": "1,4 mln to benchmark secondary. W systemie warto trzymac min_base_daily=2739 dla danych 2024 i current_base_daily=3836 dla 2025."
+    }
+  ],
+  "opening_windows": [
+    {
+      "object_id": "fala",
+      "window_id": "pool_standard",
+      "applies_to": "all",
+      "start_time": "09:00",
+      "end_time": "22:00",
+      "window_type": "standard",
+      "notes": "Strefa basenowa. Sauny maja osobne okna.",
+      "source_refs": "S02",
+      "confidence": 0.95
+    },
+    {
+      "object_id": "fala",
+      "window_id": "morning_swim_standard",
+      "applies_to": "tue-fri_except_holidays",
+      "start_time": "07:00",
+      "end_time": "08:30",
+      "window_type": "standard",
+      "notes": "Niska frekwencja, segment sportowy i regularni uzytkownicy.",
+      "source_refs": "S02",
+      "confidence": 0.95
+    },
+    {
+      "object_id": "fala",
+      "window_id": "sauna_mon_thu",
+      "applies_to": "mon-thu",
+      "start_time": "11:00",
+      "end_time": "22:00",
+      "window_type": "standard",
+      "notes": "Wieczory zimowe sa kluczowe dla oblozenia.",
+      "source_refs": "S02,S01",
+      "confidence": 0.9
+    },
+    {
+      "object_id": "fala",
+      "window_id": "sauna_fri",
+      "applies_to": "fri",
+      "start_time": "11:00",
+      "end_time": "23:30",
+      "window_type": "standard",
+      "notes": "Piatkowy wydluzony ogon popytu.",
+      "source_refs": "S02",
+      "confidence": 0.9
+    },
+    {
+      "object_id": "fala",
+      "window_id": "sauna_sat",
+      "applies_to": "sat",
+      "start_time": "09:00",
+      "end_time": "23:00",
+      "window_type": "standard",
+      "notes": "09:00-10:00 saunowanie dla dzieci w wybranych terminach, standard 10:00-23:00.",
+      "source_refs": "S02",
+      "confidence": 0.9
+    },
+    {
+      "object_id": "fala",
+      "window_id": "sauna_sun_holiday",
+      "applies_to": "sun_holiday",
+      "start_time": "09:00",
+      "end_time": "22:00",
+      "window_type": "standard",
+      "notes": "Dzien rodzinny, wysokie obciazenie od poludnia.",
+      "source_refs": "S02",
+      "confidence": 0.9
+    },
+    {
+      "object_id": "fala",
+      "window_id": "external_zone_may_weather_based",
+      "applies_to": "may",
+      "start_time": "09:00",
+      "end_time": "22:00",
+      "window_type": "seasonal",
+      "notes": "W maju strefa zewnetrzna uruchamiana codziennie lub weekendowo zaleznie od pogody.",
+      "source_refs": "S05",
+      "confidence": 0.7
+    },
+    {
+      "object_id": "fala",
+      "window_id": "pool_summer_prior",
+      "applies_to": "summer_school_break",
+      "start_time": "08:00",
+      "end_time": "22:00",
+      "window_type": "seasonal_prior",
+      "notes": "Historyczna zasada 2025: wakacyjnie godzine wczesniej od zakonczenia roku szkolnego.",
+      "source_refs": "S06",
+      "confidence": 0.7
+    },
+    {
+      "object_id": "orientarium",
+      "window_id": "visitor_standard",
+      "applies_to": "all",
+      "start_time": "09:00",
+      "end_time": "19:00",
+      "window_type": "standard",
+      "notes": "Ostatnie wejscie 18:00, pawilony do 18:45.",
+      "source_refs": "S07,S08",
+      "confidence": 0.95
+    },
+    {
+      "object_id": "orientarium",
+      "window_id": "cashdesk",
+      "applies_to": "all",
+      "start_time": "09:00",
+      "end_time": "18:00",
+      "window_type": "standard",
+      "notes": "Po 18:00 brak nowego wejscia, modelowac odplyw.",
+      "source_refs": "S07",
+      "confidence": 0.95
+    },
+    {
+      "object_id": "orientarium",
+      "window_id": "pavilions_close",
+      "applies_to": "all",
+      "start_time": "18:45",
+      "end_time": "18:45",
+      "window_type": "standard",
+      "notes": "Od 18:00-19:00 raczej wyjscia niz nowe wejscia.",
+      "source_refs": "S07,S08",
+      "confidence": 0.9
+    }
+  ],
+  "month_multipliers": [
+    {
+      "object_id": "fala",
+      "month": "01",
+      "month_factor": 0.9,
+      "notes": "styczen stabilny, sauny silne; 117k w styczniu 2025 daje ok. 0.91 sredniego miesiaca rocznego",
+      "source_refs": "S01,S03,S04,S05,S06",
+      "confidence": 0.62
+    },
+    {
+      "object_id": "fala",
+      "month": "02",
+      "month_factor": 1.15,
+      "notes": "ferie zimowe i ruch rodzinny; PDF wskazuje +60% na basenach w ferie",
+      "source_refs": "S01,S03,S04,S05,S06",
+      "confidence": 0.62
+    },
+    {
+      "object_id": "fala",
+      "month": "03",
+      "month_factor": 0.85,
+      "notes": "po feriach spokojniej",
+      "source_refs": "S01,S03,S04,S05,S06",
+      "confidence": 0.62
+    },
+    {
+      "object_id": "fala",
+      "month": "04",
+      "month_factor": 0.95,
+      "notes": "wiosenne odbicie, swieta wielkanocne zalezne od kalendarza",
+      "source_refs": "S01,S03,S04,S05,S06",
+      "confidence": 0.62
+    },
+    {
+      "object_id": "fala",
+      "month": "05",
+      "month_factor": 1.3,
+      "notes": "Majowka i start strefy zewnetrznej zaleznie od pogody",
+      "source_refs": "S01,S03,S04,S05,S06",
+      "confidence": 0.62
+    },
+    {
+      "object_id": "fala",
+      "month": "06",
+      "month_factor": 1.45,
+      "notes": "koniec szkoly, Boze Cialo, poczatek lata",
+      "source_refs": "S01,S03,S04,S05,S06",
+      "confidence": 0.62
+    },
+    {
+      "object_id": "fala",
+      "month": "07",
+      "month_factor": 1.9,
+      "notes": "wakacje i cieplo, najwyzsza wrazliwosc na temperature",
+      "source_refs": "S01,S03,S04,S05,S06",
+      "confidence": 0.62
+    },
+    {
+      "object_id": "fala",
+      "month": "08",
+      "month_factor": 1.85,
+      "notes": "wakacje, nadal bardzo wysoki popyt",
+      "source_refs": "S01,S03,S04,S05,S06",
+      "confidence": 0.62
+    },
+    {
+      "object_id": "fala",
+      "month": "09",
+      "month_factor": 0.9,
+      "notes": "powrot do szkoly, mocny spadek rodzinny",
+      "source_refs": "S01,S03,S04,S05,S06",
+      "confidence": 0.62
+    },
+    {
+      "object_id": "fala",
+      "month": "10",
+      "month_factor": 0.85,
+      "notes": "tryb roboczy, sauny zaczynaja przejmowac wieczor",
+      "source_refs": "S01,S03,S04,S05,S06",
+      "confidence": 0.62
+    },
+    {
+      "object_id": "fala",
+      "month": "11",
+      "month_factor": 0.82,
+      "notes": "nizsza baza, wieczorne sauny",
+      "source_refs": "S01,S03,S04,S05,S06",
+      "confidence": 0.62
+    },
+    {
+      "object_id": "fala",
+      "month": "12",
+      "month_factor": 1.05,
+      "notes": "Christmas break, zimowe wizyty rodzinne i sauny",
+      "source_refs": "S01,S03,S04,S05,S06",
+      "confidence": 0.62
+    },
+    {
+      "object_id": "orientarium",
+      "month": "01",
+      "month_factor": 0.45,
+      "notes": "niski miesiac wzgledem potencjalnej bazy 2025; 47k w styczniu",
+      "source_refs": "S01,S04,S09,S12",
+      "confidence": 0.6
+    },
+    {
+      "object_id": "orientarium",
+      "month": "02",
+      "month_factor": 0.75,
+      "notes": "ferie zimowe, ale ruch rozproszony",
+      "source_refs": "S01,S04,S09,S12",
+      "confidence": 0.6
+    },
+    {
+      "object_id": "orientarium",
+      "month": "03",
+      "month_factor": 0.85,
+      "notes": "wczesna wiosna, mniej turystow",
+      "source_refs": "S01,S04,S09,S12",
+      "confidence": 0.6
+    },
+    {
+      "object_id": "orientarium",
+      "month": "04",
+      "month_factor": 1.05,
+      "notes": "wiosna, wydluzone godziny, wycieczki",
+      "source_refs": "S01,S04,S09,S12",
+      "confidence": 0.6
+    },
+    {
+      "object_id": "orientarium",
+      "month": "05",
+      "month_factor": 1.2,
+      "notes": "szczyt wycieczek szkolnych i weekendy",
+      "source_refs": "S01,S04,S09,S12",
+      "confidence": 0.6
+    },
+    {
+      "object_id": "orientarium",
+      "month": "06",
+      "month_factor": 1.25,
+      "notes": "wycieczki plus poczatek wakacji",
+      "source_refs": "S01,S04,S09,S12",
+      "confidence": 0.6
+    },
+    {
+      "object_id": "orientarium",
+      "month": "07",
+      "month_factor": 1.55,
+      "notes": "turystyka ogolnopolska, wysokie wakacyjne oblozenie",
+      "source_refs": "S01,S04,S09,S12",
+      "confidence": 0.6
+    },
+    {
+      "object_id": "orientarium",
+      "month": "08",
+      "month_factor": 1.63,
+      "notes": "sierpien 2025 >190k, najlepszy miesiac od otwarcia",
+      "source_refs": "S01,S04,S09,S12",
+      "confidence": 0.6
+    },
+    {
+      "object_id": "orientarium",
+      "month": "09",
+      "month_factor": 1.1,
+      "notes": "turysci jeszcze obecni, mniej szkol",
+      "source_refs": "S01,S04,S09,S12",
+      "confidence": 0.6
+    },
+    {
+      "object_id": "orientarium",
+      "month": "10",
+      "month_factor": 0.95,
+      "notes": "spadek po wakacjach, komfortowe zwiedzanie",
+      "source_refs": "S01,S04,S09,S12",
+      "confidence": 0.6
+    },
+    {
+      "object_id": "orientarium",
+      "month": "11",
+      "month_factor": 0.75,
+      "notes": "niskie kolejki i swobodny dostep",
+      "source_refs": "S01,S04,S09,S12",
+      "confidence": 0.6
+    },
+    {
+      "object_id": "orientarium",
+      "month": "12",
+      "month_factor": 0.78,
+      "notes": "Christmas break podnosi koniec miesiaca",
+      "source_refs": "S01,S04,S09,S12",
+      "confidence": 0.6
+    }
+  ],
+  "dow_multipliers": [
+    {
+      "object_id": "fala",
+      "dow": "mon",
+      "dow_factor": 0.75,
+      "notes": "Nizszy dzien roboczy, brak porannego plywania w modelu standardowym.",
+      "confidence": 0.55
+    },
+    {
+      "object_id": "fala",
+      "dow": "tue",
+      "dow_factor": 0.82,
+      "notes": "Dzien roboczy, poranne plywanie niszowe.",
+      "confidence": 0.55
+    },
+    {
+      "object_id": "fala",
+      "dow": "wed",
+      "dow_factor": 0.88,
+      "notes": "Dzien roboczy, lekko wyzszy popyt niz wtorek.",
+      "confidence": 0.55
+    },
+    {
+      "object_id": "fala",
+      "dow": "thu",
+      "dow_factor": 0.95,
+      "notes": "Przed weekendem, wieczory saunowe.",
+      "confidence": 0.55
+    },
+    {
+      "object_id": "fala",
+      "dow": "fri",
+      "dow_factor": 1.15,
+      "notes": "Piatek i dluzsza sauna do 23:30.",
+      "confidence": 0.6
+    },
+    {
+      "object_id": "fala",
+      "dow": "sat",
+      "dow_factor": 1.55,
+      "notes": "Weekend rodzinny, szczyt od poludnia.",
+      "confidence": 0.7
+    },
+    {
+      "object_id": "fala",
+      "dow": "sun",
+      "dow_factor": 1.5,
+      "notes": "Weekend rodzinny, krotszy wieczor niz sobota.",
+      "confidence": 0.7
+    },
+    {
+      "object_id": "fala",
+      "dow": "public_holiday",
+      "dow_factor": 1.7,
+      "notes": "Majowka, Boze Cialo i dlugie weekendy moga dobic do przepustowosci juz od 11:00.",
+      "confidence": 0.65
+    },
+    {
+      "object_id": "fala",
+      "dow": "bridge_day",
+      "dow_factor": 1.55,
+      "notes": "Dzien pomostowy przy swiecie, szczegolnie przy dobrej pogodzie.",
+      "confidence": 0.55
+    },
+    {
+      "object_id": "orientarium",
+      "dow": "mon",
+      "dow_factor": 0.7,
+      "notes": "Niski ruch poza wakacjami, brak typowego weekendowego impulsu.",
+      "confidence": 0.55
+    },
+    {
+      "object_id": "orientarium",
+      "dow": "tue",
+      "dow_factor": 0.95,
+      "notes": "Normalny dzien, w sezonie wycieczek szkolnych podbijac do 1.10.",
+      "confidence": 0.58
+    },
+    {
+      "object_id": "orientarium",
+      "dow": "wed",
+      "dow_factor": 0.98,
+      "notes": "Normalny dzien, w sezonie wycieczek szkolnych podbijac do 1.15.",
+      "confidence": 0.58
+    },
+    {
+      "object_id": "orientarium",
+      "dow": "thu",
+      "dow_factor": 0.98,
+      "notes": "Normalny dzien, w sezonie wycieczek szkolnych podbijac do 1.15.",
+      "confidence": 0.58
+    },
+    {
+      "object_id": "orientarium",
+      "dow": "fri",
+      "dow_factor": 1.0,
+      "notes": "Dzien przejsciowy przed weekendem.",
+      "confidence": 0.58
+    },
+    {
+      "object_id": "orientarium",
+      "dow": "sat",
+      "dow_factor": 1.65,
+      "notes": "Najwyzszy regularny popyt rodzinny i turystyczny.",
+      "confidence": 0.7
+    },
+    {
+      "object_id": "orientarium",
+      "dow": "sun",
+      "dow_factor": 1.55,
+      "notes": "Wysoki popyt rodzinny, mniej wycieczek grupowych.",
+      "confidence": 0.68
+    },
+    {
+      "object_id": "orientarium",
+      "dow": "public_holiday",
+      "dow_factor": 1.8,
+      "notes": "Dlugie weekendy i ferie, wysoki ruch od 10:30.",
+      "confidence": 0.65
+    },
+    {
+      "object_id": "orientarium",
+      "dow": "bridge_day",
+      "dow_factor": 1.65,
+      "notes": "Turystyka krajowa i lokalna.",
+      "confidence": 0.58
+    }
+  ],
+  "hourly_profiles": [
+    {
+      "object_id": "fala",
+      "profile_id": "weekday_standard_09_22",
+      "hour": 9,
+      "start_time": "09:00",
+      "end_time": "10:00",
+      "share_of_daily_visitors": 0.04,
+      "occupancy_index": 0.31,
+      "notes": "niski start, segment spokojny",
+      "source_refs": "S01,S02",
+      "confidence": 0.62
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "weekday_standard_09_22",
+      "hour": 10,
+      "start_time": "10:00",
+      "end_time": "11:00",
+      "share_of_daily_visitors": 0.05,
+      "occupancy_index": 0.38,
+      "notes": "niski ruch roboczy",
+      "source_refs": "S01,S02",
+      "confidence": 0.62
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "weekday_standard_09_22",
+      "hour": 11,
+      "start_time": "11:00",
+      "end_time": "12:00",
+      "share_of_daily_visitors": 0.05,
+      "occupancy_index": 0.38,
+      "notes": "niski ruch roboczy",
+      "source_refs": "S01,S02",
+      "confidence": 0.62
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "weekday_standard_09_22",
+      "hour": 12,
+      "start_time": "12:00",
+      "end_time": "13:00",
+      "share_of_daily_visitors": 0.06,
+      "occupancy_index": 0.46,
+      "notes": "niski do sredniego",
+      "source_refs": "S01,S02",
+      "confidence": 0.62
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "weekday_standard_09_22",
+      "hour": 13,
+      "start_time": "13:00",
+      "end_time": "14:00",
+      "share_of_daily_visitors": 0.06,
+      "occupancy_index": 0.46,
+      "notes": "niski do sredniego",
+      "source_refs": "S01,S02",
+      "confidence": 0.62
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "weekday_standard_09_22",
+      "hour": 14,
+      "start_time": "14:00",
+      "end_time": "15:00",
+      "share_of_daily_visitors": 0.07,
+      "occupancy_index": 0.54,
+      "notes": "wejscia po poludniu",
+      "source_refs": "S01,S02",
+      "confidence": 0.62
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "weekday_standard_09_22",
+      "hour": 15,
+      "start_time": "15:00",
+      "end_time": "16:00",
+      "share_of_daily_visitors": 0.08,
+      "occupancy_index": 0.62,
+      "notes": "narastanie",
+      "source_refs": "S01,S02",
+      "confidence": 0.62
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "weekday_standard_09_22",
+      "hour": 16,
+      "start_time": "16:00",
+      "end_time": "17:00",
+      "share_of_daily_visitors": 0.11,
+      "occupancy_index": 0.85,
+      "notes": "start szczytu po pracy",
+      "source_refs": "S01,S02",
+      "confidence": 0.62
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "weekday_standard_09_22",
+      "hour": 17,
+      "start_time": "17:00",
+      "end_time": "18:00",
+      "share_of_daily_visitors": 0.13,
+      "occupancy_index": 1.0,
+      "notes": "szczyt roboczy, sekcje i powroty z pracy",
+      "source_refs": "S01,S02",
+      "confidence": 0.62
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "weekday_standard_09_22",
+      "hour": 18,
+      "start_time": "18:00",
+      "end_time": "19:00",
+      "share_of_daily_visitors": 0.13,
+      "occupancy_index": 1.0,
+      "notes": "szczyt roboczy, sauny jesien-zima",
+      "source_refs": "S01,S02",
+      "confidence": 0.62
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "weekday_standard_09_22",
+      "hour": 19,
+      "start_time": "19:00",
+      "end_time": "20:00",
+      "share_of_daily_visitors": 0.1,
+      "occupancy_index": 0.77,
+      "notes": "wysoko, ale zaczyna spadac",
+      "source_refs": "S01,S02",
+      "confidence": 0.62
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "weekday_standard_09_22",
+      "hour": 20,
+      "start_time": "20:00",
+      "end_time": "21:00",
+      "share_of_daily_visitors": 0.07,
+      "occupancy_index": 0.54,
+      "notes": "spadek, dobre okno dla klienta",
+      "source_refs": "S01,S02",
+      "confidence": 0.62
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "weekday_standard_09_22",
+      "hour": 21,
+      "start_time": "21:00",
+      "end_time": "22:00",
+      "share_of_daily_visitors": 0.05,
+      "occupancy_index": 0.38,
+      "notes": "ostatnia godzina",
+      "source_refs": "S01,S02",
+      "confidence": 0.62
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "weekday_morning_swim_07_22",
+      "hour": 7,
+      "start_time": "07:00",
+      "end_time": "08:00",
+      "share_of_daily_visitors": 0.0254,
+      "occupancy_index": 0.2,
+      "notes": "poranne plywanie, niski wolumen, sport",
+      "source_refs": "S01,S02",
+      "confidence": 0.6
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "weekday_morning_swim_07_22",
+      "hour": 8,
+      "start_time": "08:00",
+      "end_time": "09:00",
+      "share_of_daily_visitors": 0.0203,
+      "occupancy_index": 0.16,
+      "notes": "koniec porannego okna",
+      "source_refs": "S01,S02",
+      "confidence": 0.6
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "weekday_morning_swim_07_22",
+      "hour": 9,
+      "start_time": "09:00",
+      "end_time": "10:00",
+      "share_of_daily_visitors": 0.0355,
+      "occupancy_index": 0.28,
+      "notes": "",
+      "source_refs": "S01,S02",
+      "confidence": 0.6
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "weekday_morning_swim_07_22",
+      "hour": 10,
+      "start_time": "10:00",
+      "end_time": "11:00",
+      "share_of_daily_visitors": 0.0457,
+      "occupancy_index": 0.36,
+      "notes": "",
+      "source_refs": "S01,S02",
+      "confidence": 0.6
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "weekday_morning_swim_07_22",
+      "hour": 11,
+      "start_time": "11:00",
+      "end_time": "12:00",
+      "share_of_daily_visitors": 0.0457,
+      "occupancy_index": 0.36,
+      "notes": "",
+      "source_refs": "S01,S02",
+      "confidence": 0.6
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "weekday_morning_swim_07_22",
+      "hour": 12,
+      "start_time": "12:00",
+      "end_time": "13:00",
+      "share_of_daily_visitors": 0.0558,
+      "occupancy_index": 0.44,
+      "notes": "",
+      "source_refs": "S01,S02",
+      "confidence": 0.6
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "weekday_morning_swim_07_22",
+      "hour": 13,
+      "start_time": "13:00",
+      "end_time": "14:00",
+      "share_of_daily_visitors": 0.0558,
+      "occupancy_index": 0.44,
+      "notes": "",
+      "source_refs": "S01,S02",
+      "confidence": 0.6
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "weekday_morning_swim_07_22",
+      "hour": 14,
+      "start_time": "14:00",
+      "end_time": "15:00",
+      "share_of_daily_visitors": 0.066,
+      "occupancy_index": 0.52,
+      "notes": "",
+      "source_refs": "S01,S02",
+      "confidence": 0.6
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "weekday_morning_swim_07_22",
+      "hour": 15,
+      "start_time": "15:00",
+      "end_time": "16:00",
+      "share_of_daily_visitors": 0.0761,
+      "occupancy_index": 0.6,
+      "notes": "",
+      "source_refs": "S01,S02",
+      "confidence": 0.6
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "weekday_morning_swim_07_22",
+      "hour": 16,
+      "start_time": "16:00",
+      "end_time": "17:00",
+      "share_of_daily_visitors": 0.1066,
+      "occupancy_index": 0.84,
+      "notes": "start szczytu",
+      "source_refs": "S01,S02",
+      "confidence": 0.6
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "weekday_morning_swim_07_22",
+      "hour": 17,
+      "start_time": "17:00",
+      "end_time": "18:00",
+      "share_of_daily_visitors": 0.1269,
+      "occupancy_index": 1.0,
+      "notes": "szczyt",
+      "source_refs": "S01,S02",
+      "confidence": 0.6
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "weekday_morning_swim_07_22",
+      "hour": 18,
+      "start_time": "18:00",
+      "end_time": "19:00",
+      "share_of_daily_visitors": 0.1269,
+      "occupancy_index": 1.0,
+      "notes": "szczyt",
+      "source_refs": "S01,S02",
+      "confidence": 0.6
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "weekday_morning_swim_07_22",
+      "hour": 19,
+      "start_time": "19:00",
+      "end_time": "20:00",
+      "share_of_daily_visitors": 0.0964,
+      "occupancy_index": 0.76,
+      "notes": "wysoko",
+      "source_refs": "S01,S02",
+      "confidence": 0.6
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "weekday_morning_swim_07_22",
+      "hour": 20,
+      "start_time": "20:00",
+      "end_time": "21:00",
+      "share_of_daily_visitors": 0.066,
+      "occupancy_index": 0.52,
+      "notes": "spadek",
+      "source_refs": "S01,S02",
+      "confidence": 0.6
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "weekday_morning_swim_07_22",
+      "hour": 21,
+      "start_time": "21:00",
+      "end_time": "22:00",
+      "share_of_daily_visitors": 0.0509,
+      "occupancy_index": 0.4,
+      "notes": "ostatnia godzina",
+      "source_refs": "S01,S02",
+      "confidence": 0.6
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "weekend_holiday_standard_09_22",
+      "hour": 9,
+      "start_time": "09:00",
+      "end_time": "10:00",
+      "share_of_daily_visitors": 0.05,
+      "occupancy_index": 0.38,
+      "notes": "najlepsze okno na wejscie",
+      "source_refs": "S01,S02",
+      "confidence": 0.65
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "weekend_holiday_standard_09_22",
+      "hour": 10,
+      "start_time": "10:00",
+      "end_time": "11:00",
+      "share_of_daily_visitors": 0.07,
+      "occupancy_index": 0.54,
+      "notes": "narastanie",
+      "source_refs": "S01,S02",
+      "confidence": 0.65
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "weekend_holiday_standard_09_22",
+      "hour": 11,
+      "start_time": "11:00",
+      "end_time": "12:00",
+      "share_of_daily_visitors": 0.09,
+      "occupancy_index": 0.69,
+      "notes": "wejscia rodzinne",
+      "source_refs": "S01,S02",
+      "confidence": 0.65
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "weekend_holiday_standard_09_22",
+      "hour": 12,
+      "start_time": "12:00",
+      "end_time": "13:00",
+      "share_of_daily_visitors": 0.12,
+      "occupancy_index": 0.92,
+      "notes": "start wysokiego oblozenia",
+      "source_refs": "S01,S02",
+      "confidence": 0.65
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "weekend_holiday_standard_09_22",
+      "hour": 13,
+      "start_time": "13:00",
+      "end_time": "14:00",
+      "share_of_daily_visitors": 0.13,
+      "occupancy_index": 1.0,
+      "notes": "szczyt",
+      "source_refs": "S01,S02",
+      "confidence": 0.65
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "weekend_holiday_standard_09_22",
+      "hour": 14,
+      "start_time": "14:00",
+      "end_time": "15:00",
+      "share_of_daily_visitors": 0.13,
+      "occupancy_index": 1.0,
+      "notes": "szczyt",
+      "source_refs": "S01,S02",
+      "confidence": 0.65
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "weekend_holiday_standard_09_22",
+      "hour": 15,
+      "start_time": "15:00",
+      "end_time": "16:00",
+      "share_of_daily_visitors": 0.12,
+      "occupancy_index": 0.92,
+      "notes": "wysoko",
+      "source_refs": "S01,S02",
+      "confidence": 0.65
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "weekend_holiday_standard_09_22",
+      "hour": 16,
+      "start_time": "16:00",
+      "end_time": "17:00",
+      "share_of_daily_visitors": 0.1,
+      "occupancy_index": 0.77,
+      "notes": "wysoko",
+      "source_refs": "S01,S02",
+      "confidence": 0.65
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "weekend_holiday_standard_09_22",
+      "hour": 17,
+      "start_time": "17:00",
+      "end_time": "18:00",
+      "share_of_daily_visitors": 0.08,
+      "occupancy_index": 0.62,
+      "notes": "spadek",
+      "source_refs": "S01,S02",
+      "confidence": 0.65
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "weekend_holiday_standard_09_22",
+      "hour": 18,
+      "start_time": "18:00",
+      "end_time": "19:00",
+      "share_of_daily_visitors": 0.05,
+      "occupancy_index": 0.38,
+      "notes": "spadek",
+      "source_refs": "S01,S02",
+      "confidence": 0.65
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "weekend_holiday_standard_09_22",
+      "hour": 19,
+      "start_time": "19:00",
+      "end_time": "20:00",
+      "share_of_daily_visitors": 0.03,
+      "occupancy_index": 0.23,
+      "notes": "dobre okno",
+      "source_refs": "S01,S02",
+      "confidence": 0.65
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "weekend_holiday_standard_09_22",
+      "hour": 20,
+      "start_time": "20:00",
+      "end_time": "21:00",
+      "share_of_daily_visitors": 0.02,
+      "occupancy_index": 0.15,
+      "notes": "dobre okno",
+      "source_refs": "S01,S02",
+      "confidence": 0.65
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "weekend_holiday_standard_09_22",
+      "hour": 21,
+      "start_time": "21:00",
+      "end_time": "22:00",
+      "share_of_daily_visitors": 0.01,
+      "occupancy_index": 0.08,
+      "notes": "niski ogon",
+      "source_refs": "S01,S02",
+      "confidence": 0.65
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "summer_hot_external_zone_08_22",
+      "hour": 8,
+      "start_time": "08:00",
+      "end_time": "09:00",
+      "share_of_daily_visitors": 0.04,
+      "occupancy_index": 0.33,
+      "notes": "wakacyjne wczesne wejscia, rodziny z dziecmi",
+      "source_refs": "S01,S05,S06",
+      "confidence": 0.62
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "summer_hot_external_zone_08_22",
+      "hour": 9,
+      "start_time": "09:00",
+      "end_time": "10:00",
+      "share_of_daily_visitors": 0.06,
+      "occupancy_index": 0.5,
+      "notes": "narastanie",
+      "source_refs": "S01,S05,S06",
+      "confidence": 0.62
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "summer_hot_external_zone_08_22",
+      "hour": 10,
+      "start_time": "10:00",
+      "end_time": "11:00",
+      "share_of_daily_visitors": 0.08,
+      "occupancy_index": 0.67,
+      "notes": "kolejki start",
+      "source_refs": "S01,S05,S06",
+      "confidence": 0.62
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "summer_hot_external_zone_08_22",
+      "hour": 11,
+      "start_time": "11:00",
+      "end_time": "12:00",
+      "share_of_daily_visitors": 0.1,
+      "occupancy_index": 0.83,
+      "notes": "wysoko",
+      "source_refs": "S01,S05,S06",
+      "confidence": 0.62
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "summer_hot_external_zone_08_22",
+      "hour": 12,
+      "start_time": "12:00",
+      "end_time": "13:00",
+      "share_of_daily_visitors": 0.11,
+      "occupancy_index": 0.92,
+      "notes": "szczyt",
+      "source_refs": "S01,S05,S06",
+      "confidence": 0.62
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "summer_hot_external_zone_08_22",
+      "hour": 13,
+      "start_time": "13:00",
+      "end_time": "14:00",
+      "share_of_daily_visitors": 0.12,
+      "occupancy_index": 1.0,
+      "notes": "szczyt",
+      "source_refs": "S01,S05,S06",
+      "confidence": 0.62
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "summer_hot_external_zone_08_22",
+      "hour": 14,
+      "start_time": "14:00",
+      "end_time": "15:00",
+      "share_of_daily_visitors": 0.12,
+      "occupancy_index": 1.0,
+      "notes": "szczyt",
+      "source_refs": "S01,S05,S06",
+      "confidence": 0.62
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "summer_hot_external_zone_08_22",
+      "hour": 15,
+      "start_time": "15:00",
+      "end_time": "16:00",
+      "share_of_daily_visitors": 0.11,
+      "occupancy_index": 0.92,
+      "notes": "wysoko",
+      "source_refs": "S01,S05,S06",
+      "confidence": 0.62
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "summer_hot_external_zone_08_22",
+      "hour": 16,
+      "start_time": "16:00",
+      "end_time": "17:00",
+      "share_of_daily_visitors": 0.09,
+      "occupancy_index": 0.75,
+      "notes": "wysoko",
+      "source_refs": "S01,S05,S06",
+      "confidence": 0.62
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "summer_hot_external_zone_08_22",
+      "hour": 17,
+      "start_time": "17:00",
+      "end_time": "18:00",
+      "share_of_daily_visitors": 0.07,
+      "occupancy_index": 0.58,
+      "notes": "spadek",
+      "source_refs": "S01,S05,S06",
+      "confidence": 0.62
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "summer_hot_external_zone_08_22",
+      "hour": 18,
+      "start_time": "18:00",
+      "end_time": "19:00",
+      "share_of_daily_visitors": 0.05,
+      "occupancy_index": 0.42,
+      "notes": "spadek",
+      "source_refs": "S01,S05,S06",
+      "confidence": 0.62
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "summer_hot_external_zone_08_22",
+      "hour": 19,
+      "start_time": "19:00",
+      "end_time": "20:00",
+      "share_of_daily_visitors": 0.03,
+      "occupancy_index": 0.25,
+      "notes": "dobre okno po upale",
+      "source_refs": "S01,S05,S06",
+      "confidence": 0.62
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "summer_hot_external_zone_08_22",
+      "hour": 20,
+      "start_time": "20:00",
+      "end_time": "21:00",
+      "share_of_daily_visitors": 0.015,
+      "occupancy_index": 0.12,
+      "notes": "nisko",
+      "source_refs": "S01,S05,S06",
+      "confidence": 0.62
+    },
+    {
+      "object_id": "fala",
+      "profile_id": "summer_hot_external_zone_08_22",
+      "hour": 21,
+      "start_time": "21:00",
+      "end_time": "22:00",
+      "share_of_daily_visitors": 0.005,
+      "occupancy_index": 0.04,
+      "notes": "niski ogon",
+      "source_refs": "S01,S05,S06",
+      "confidence": 0.62
+    },
+    {
+      "object_id": "orientarium",
+      "profile_id": "weekday_school_trip_season_09_19",
+      "hour": 9,
+      "start_time": "09:00",
+      "end_time": "10:00",
+      "share_of_daily_visitors": 0.06,
+      "occupancy_index": 0.4,
+      "notes": "najlepsze okno, obiekt dopiero sie napelnia",
+      "source_refs": "S01,S07,S08",
+      "confidence": 0.65
+    },
+    {
+      "object_id": "orientarium",
+      "profile_id": "weekday_school_trip_season_09_19",
+      "hour": 10,
+      "start_time": "10:00",
+      "end_time": "11:00",
+      "share_of_daily_visitors": 0.12,
+      "occupancy_index": 0.8,
+      "notes": "start grup szkolnych",
+      "source_refs": "S01,S07,S08",
+      "confidence": 0.65
+    },
+    {
+      "object_id": "orientarium",
+      "profile_id": "weekday_school_trip_season_09_19",
+      "hour": 11,
+      "start_time": "11:00",
+      "end_time": "12:00",
+      "share_of_daily_visitors": 0.14,
+      "occupancy_index": 0.93,
+      "notes": "slonie - krytyczny zator",
+      "source_refs": "S01,S07,S08",
+      "confidence": 0.65
+    },
+    {
+      "object_id": "orientarium",
+      "profile_id": "weekday_school_trip_season_09_19",
+      "hour": 12,
+      "start_time": "12:00",
+      "end_time": "13:00",
+      "share_of_daily_visitors": 0.14,
+      "occupancy_index": 0.93,
+      "notes": "fala po sloniach",
+      "source_refs": "S01,S07,S08",
+      "confidence": 0.65
+    },
+    {
+      "object_id": "orientarium",
+      "profile_id": "weekday_school_trip_season_09_19",
+      "hour": 13,
+      "start_time": "13:00",
+      "end_time": "14:00",
+      "share_of_daily_visitors": 0.15,
+      "occupancy_index": 1.0,
+      "notes": "orangutany - drugie waskie gardlo",
+      "source_refs": "S01,S07,S08",
+      "confidence": 0.65
+    },
+    {
+      "object_id": "orientarium",
+      "profile_id": "weekday_school_trip_season_09_19",
+      "hour": 14,
+      "start_time": "14:00",
+      "end_time": "15:00",
+      "share_of_daily_visitors": 0.12,
+      "occupancy_index": 0.8,
+      "notes": "spadek po karmieniach",
+      "source_refs": "S01,S07,S08",
+      "confidence": 0.65
+    },
+    {
+      "object_id": "orientarium",
+      "profile_id": "weekday_school_trip_season_09_19",
+      "hour": 15,
+      "start_time": "15:00",
+      "end_time": "16:00",
+      "share_of_daily_visitors": 0.1,
+      "occupancy_index": 0.67,
+      "notes": "stabilnie",
+      "source_refs": "S01,S07,S08",
+      "confidence": 0.65
+    },
+    {
+      "object_id": "orientarium",
+      "profile_id": "weekday_school_trip_season_09_19",
+      "hour": 16,
+      "start_time": "16:00",
+      "end_time": "17:00",
+      "share_of_daily_visitors": 0.08,
+      "occupancy_index": 0.53,
+      "notes": "spadek",
+      "source_refs": "S01,S07,S08",
+      "confidence": 0.65
+    },
+    {
+      "object_id": "orientarium",
+      "profile_id": "weekday_school_trip_season_09_19",
+      "hour": 17,
+      "start_time": "17:00",
+      "end_time": "18:00",
+      "share_of_daily_visitors": 0.06,
+      "occupancy_index": 0.4,
+      "notes": "slonie, lokalny pik",
+      "source_refs": "S01,S07,S08",
+      "confidence": 0.65
+    },
+    {
+      "object_id": "orientarium",
+      "profile_id": "weekday_school_trip_season_09_19",
+      "hour": 18,
+      "start_time": "18:00",
+      "end_time": "19:00",
+      "share_of_daily_visitors": 0.03,
+      "occupancy_index": 0.2,
+      "notes": "ostatnie wejscia i odplyw",
+      "source_refs": "S01,S07,S08",
+      "confidence": 0.65
+    },
+    {
+      "object_id": "orientarium",
+      "profile_id": "weekday_quiet_09_19",
+      "hour": 9,
+      "start_time": "09:00",
+      "end_time": "10:00",
+      "share_of_daily_visitors": 0.08,
+      "occupancy_index": 0.62,
+      "notes": "dobre wejscie",
+      "source_refs": "S01,S07,S08",
+      "confidence": 0.58
+    },
+    {
+      "object_id": "orientarium",
+      "profile_id": "weekday_quiet_09_19",
+      "hour": 10,
+      "start_time": "10:00",
+      "end_time": "11:00",
+      "share_of_daily_visitors": 0.1,
+      "occupancy_index": 0.77,
+      "notes": "narastanie",
+      "source_refs": "S01,S07,S08",
+      "confidence": 0.58
+    },
+    {
+      "object_id": "orientarium",
+      "profile_id": "weekday_quiet_09_19",
+      "hour": 11,
+      "start_time": "11:00",
+      "end_time": "12:00",
+      "share_of_daily_visitors": 0.13,
+      "occupancy_index": 1.0,
+      "notes": "slonie - lokalny pik",
+      "source_refs": "S01,S07,S08",
+      "confidence": 0.58
+    },
+    {
+      "object_id": "orientarium",
+      "profile_id": "weekday_quiet_09_19",
+      "hour": 12,
+      "start_time": "12:00",
+      "end_time": "13:00",
+      "share_of_daily_visitors": 0.13,
+      "occupancy_index": 1.0,
+      "notes": "wysoko",
+      "source_refs": "S01,S07,S08",
+      "confidence": 0.58
+    },
+    {
+      "object_id": "orientarium",
+      "profile_id": "weekday_quiet_09_19",
+      "hour": 13,
+      "start_time": "13:00",
+      "end_time": "14:00",
+      "share_of_daily_visitors": 0.13,
+      "occupancy_index": 1.0,
+      "notes": "orangutany - lokalny pik",
+      "source_refs": "S01,S07,S08",
+      "confidence": 0.58
+    },
+    {
+      "object_id": "orientarium",
+      "profile_id": "weekday_quiet_09_19",
+      "hour": 14,
+      "start_time": "14:00",
+      "end_time": "15:00",
+      "share_of_daily_visitors": 0.12,
+      "occupancy_index": 0.92,
+      "notes": "stabilnie",
+      "source_refs": "S01,S07,S08",
+      "confidence": 0.58
+    },
+    {
+      "object_id": "orientarium",
+      "profile_id": "weekday_quiet_09_19",
+      "hour": 15,
+      "start_time": "15:00",
+      "end_time": "16:00",
+      "share_of_daily_visitors": 0.1,
+      "occupancy_index": 0.77,
+      "notes": "spadek",
+      "source_refs": "S01,S07,S08",
+      "confidence": 0.58
+    },
+    {
+      "object_id": "orientarium",
+      "profile_id": "weekday_quiet_09_19",
+      "hour": 16,
+      "start_time": "16:00",
+      "end_time": "17:00",
+      "share_of_daily_visitors": 0.08,
+      "occupancy_index": 0.62,
+      "notes": "spadek",
+      "source_refs": "S01,S07,S08",
+      "confidence": 0.58
+    },
+    {
+      "object_id": "orientarium",
+      "profile_id": "weekday_quiet_09_19",
+      "hour": 17,
+      "start_time": "17:00",
+      "end_time": "18:00",
+      "share_of_daily_visitors": 0.08,
+      "occupancy_index": 0.62,
+      "notes": "slonie - mniejszy pik",
+      "source_refs": "S01,S07,S08",
+      "confidence": 0.58
+    },
+    {
+      "object_id": "orientarium",
+      "profile_id": "weekday_quiet_09_19",
+      "hour": 18,
+      "start_time": "18:00",
+      "end_time": "19:00",
+      "share_of_daily_visitors": 0.05,
+      "occupancy_index": 0.38,
+      "notes": "wyjscia",
+      "source_refs": "S01,S07,S08",
+      "confidence": 0.58
+    },
+    {
+      "object_id": "orientarium",
+      "profile_id": "weekend_holiday_09_19",
+      "hour": 9,
+      "start_time": "09:00",
+      "end_time": "10:00",
+      "share_of_daily_visitors": 0.07,
+      "occupancy_index": 0.44,
+      "notes": "najlepsze okno",
+      "source_refs": "S01,S07,S08",
+      "confidence": 0.68
+    },
+    {
+      "object_id": "orientarium",
+      "profile_id": "weekend_holiday_09_19",
+      "hour": 10,
+      "start_time": "10:00",
+      "end_time": "11:00",
+      "share_of_daily_visitors": 0.11,
+      "occupancy_index": 0.69,
+      "notes": "szybkie napelnianie",
+      "source_refs": "S01,S07,S08",
+      "confidence": 0.68
+    },
+    {
+      "object_id": "orientarium",
+      "profile_id": "weekend_holiday_09_19",
+      "hour": 11,
+      "start_time": "11:00",
+      "end_time": "12:00",
+      "share_of_daily_visitors": 0.16,
+      "occupancy_index": 1.0,
+      "notes": "slonie - krytyczny zator",
+      "source_refs": "S01,S07,S08",
+      "confidence": 0.68
+    },
+    {
+      "object_id": "orientarium",
+      "profile_id": "weekend_holiday_09_19",
+      "hour": 12,
+      "start_time": "12:00",
+      "end_time": "13:00",
+      "share_of_daily_visitors": 0.15,
+      "occupancy_index": 0.94,
+      "notes": "wysoko",
+      "source_refs": "S01,S07,S08",
+      "confidence": 0.68
+    },
+    {
+      "object_id": "orientarium",
+      "profile_id": "weekend_holiday_09_19",
+      "hour": 13,
+      "start_time": "13:00",
+      "end_time": "14:00",
+      "share_of_daily_visitors": 0.15,
+      "occupancy_index": 0.94,
+      "notes": "orangutany - bardzo wysoko",
+      "source_refs": "S01,S07,S08",
+      "confidence": 0.68
+    },
+    {
+      "object_id": "orientarium",
+      "profile_id": "weekend_holiday_09_19",
+      "hour": 14,
+      "start_time": "14:00",
+      "end_time": "15:00",
+      "share_of_daily_visitors": 0.13,
+      "occupancy_index": 0.81,
+      "notes": "wysoko",
+      "source_refs": "S01,S07,S08",
+      "confidence": 0.68
+    },
+    {
+      "object_id": "orientarium",
+      "profile_id": "weekend_holiday_09_19",
+      "hour": 15,
+      "start_time": "15:00",
+      "end_time": "16:00",
+      "share_of_daily_visitors": 0.1,
+      "occupancy_index": 0.62,
+      "notes": "stabilnie",
+      "source_refs": "S01,S07,S08",
+      "confidence": 0.68
+    },
+    {
+      "object_id": "orientarium",
+      "profile_id": "weekend_holiday_09_19",
+      "hour": 16,
+      "start_time": "16:00",
+      "end_time": "17:00",
+      "share_of_daily_visitors": 0.07,
+      "occupancy_index": 0.44,
+      "notes": "spadek",
+      "source_refs": "S01,S07,S08",
+      "confidence": 0.68
+    },
+    {
+      "object_id": "orientarium",
+      "profile_id": "weekend_holiday_09_19",
+      "hour": 17,
+      "start_time": "17:00",
+      "end_time": "18:00",
+      "share_of_daily_visitors": 0.05,
+      "occupancy_index": 0.31,
+      "notes": "slonie - drugi pik",
+      "source_refs": "S01,S07,S08",
+      "confidence": 0.68
+    },
+    {
+      "object_id": "orientarium",
+      "profile_id": "weekend_holiday_09_19",
+      "hour": 18,
+      "start_time": "18:00",
+      "end_time": "19:00",
+      "share_of_daily_visitors": 0.01,
+      "occupancy_index": 0.06,
+      "notes": "odplyw",
+      "source_refs": "S01,S07,S08",
+      "confidence": 0.68
+    },
+    {
+      "object_id": "orientarium",
+      "profile_id": "summer_tourism_09_19",
+      "hour": 9,
+      "start_time": "09:00",
+      "end_time": "10:00",
+      "share_of_daily_visitors": 0.07,
+      "occupancy_index": 0.47,
+      "notes": "rekomendowane wejscie",
+      "source_refs": "S01,S07,S08,S09",
+      "confidence": 0.66
+    },
+    {
+      "object_id": "orientarium",
+      "profile_id": "summer_tourism_09_19",
+      "hour": 10,
+      "start_time": "10:00",
+      "end_time": "11:00",
+      "share_of_daily_visitors": 0.12,
+      "occupancy_index": 0.8,
+      "notes": "wysoka turystyka",
+      "source_refs": "S01,S07,S08,S09",
+      "confidence": 0.66
+    },
+    {
+      "object_id": "orientarium",
+      "profile_id": "summer_tourism_09_19",
+      "hour": 11,
+      "start_time": "11:00",
+      "end_time": "12:00",
+      "share_of_daily_visitors": 0.15,
+      "occupancy_index": 1.0,
+      "notes": "slonie - krytyczny pik",
+      "source_refs": "S01,S07,S08,S09",
+      "confidence": 0.66
+    },
+    {
+      "object_id": "orientarium",
+      "profile_id": "summer_tourism_09_19",
+      "hour": 12,
+      "start_time": "12:00",
+      "end_time": "13:00",
+      "share_of_daily_visitors": 0.15,
+      "occupancy_index": 1.0,
+      "notes": "wysoko",
+      "source_refs": "S01,S07,S08,S09",
+      "confidence": 0.66
+    },
+    {
+      "object_id": "orientarium",
+      "profile_id": "summer_tourism_09_19",
+      "hour": 13,
+      "start_time": "13:00",
+      "end_time": "14:00",
+      "share_of_daily_visitors": 0.15,
+      "occupancy_index": 1.0,
+      "notes": "orangutany - bardzo wysoko",
+      "source_refs": "S01,S07,S08,S09",
+      "confidence": 0.66
+    },
+    {
+      "object_id": "orientarium",
+      "profile_id": "summer_tourism_09_19",
+      "hour": 14,
+      "start_time": "14:00",
+      "end_time": "15:00",
+      "share_of_daily_visitors": 0.14,
+      "occupancy_index": 0.93,
+      "notes": "wysoko",
+      "source_refs": "S01,S07,S08,S09",
+      "confidence": 0.66
+    },
+    {
+      "object_id": "orientarium",
+      "profile_id": "summer_tourism_09_19",
+      "hour": 15,
+      "start_time": "15:00",
+      "end_time": "16:00",
+      "share_of_daily_visitors": 0.11,
+      "occupancy_index": 0.73,
+      "notes": "spadek",
+      "source_refs": "S01,S07,S08,S09",
+      "confidence": 0.66
+    },
+    {
+      "object_id": "orientarium",
+      "profile_id": "summer_tourism_09_19",
+      "hour": 16,
+      "start_time": "16:00",
+      "end_time": "17:00",
+      "share_of_daily_visitors": 0.07,
+      "occupancy_index": 0.47,
+      "notes": "spadek",
+      "source_refs": "S01,S07,S08,S09",
+      "confidence": 0.66
+    },
+    {
+      "object_id": "orientarium",
+      "profile_id": "summer_tourism_09_19",
+      "hour": 17,
+      "start_time": "17:00",
+      "end_time": "18:00",
+      "share_of_daily_visitors": 0.03,
+      "occupancy_index": 0.2,
+      "notes": "slonie, ale slabiej niz 11:00",
+      "source_refs": "S01,S07,S08,S09",
+      "confidence": 0.66
+    },
+    {
+      "object_id": "orientarium",
+      "profile_id": "summer_tourism_09_19",
+      "hour": 18,
+      "start_time": "18:00",
+      "end_time": "19:00",
+      "share_of_daily_visitors": 0.01,
+      "occupancy_index": 0.07,
+      "notes": "odplyw",
+      "source_refs": "S01,S07,S08,S09",
+      "confidence": 0.66
+    }
+  ],
+  "weather_rules": [
+    {
+      "object_id": "fala",
+      "feature": "temperature_max_c_gt_25",
+      "condition": "if max_temp_c > 25 and precip_prob < 40",
+      "min_multiplier": 1.35,
+      "max_multiplier": 1.75,
+      "notes": "Goraco uruchamia popyt zewnetrzny. PDF wskazuje do +250% jako upper bound, ale w modelu priory powinny byc capowane do czasu kalibracji.",
+      "source_refs": "S01,S05,S06",
+      "confidence": 0.58
+    },
+    {
+      "object_id": "fala",
+      "feature": "temperature_max_c_gt_30",
+      "condition": "if max_temp_c > 30 and storm_risk < 0.3",
+      "min_multiplier": 1.1,
+      "max_multiplier": 1.25,
+      "notes": "Dodatkowy impuls, ale przy ekstremalnym upale czesc rodzin przesuwa wejscie na rano lub wieczor.",
+      "source_refs": "S01",
+      "confidence": 0.45
+    },
+    {
+      "object_id": "fala",
+      "feature": "storm_risk_high",
+      "condition": "if storm_risk >= 0.6",
+      "min_multiplier": 0.55,
+      "max_multiplier": 0.75,
+      "notes": "Najwiekszy negatywny czynnik dla strefy zewnetrznej, kolejek i komfortu wejscia.",
+      "source_refs": "model_prior",
+      "confidence": 0.45
+    },
+    {
+      "object_id": "fala",
+      "feature": "moderate_rain_warm",
+      "condition": "if rain_mm > 1 and max_temp_c > 20",
+      "min_multiplier": 0.8,
+      "max_multiplier": 1.0,
+      "notes": "Odcina czesc zewnetrzna, ale obiekt nadal dziala wewnatrz.",
+      "source_refs": "S01,S05",
+      "confidence": 0.45
+    },
+    {
+      "object_id": "fala",
+      "feature": "cold_evening_sauna",
+      "condition": "if max_temp_c < 10 and hour between 17 and 21",
+      "min_multiplier": 1.1,
+      "max_multiplier": 1.35,
+      "notes": "Zimowe i jesienne wieczory wzmacniaja sauny.",
+      "source_refs": "S01,S02",
+      "confidence": 0.55
+    },
+    {
+      "object_id": "orientarium",
+      "feature": "rain_or_cold",
+      "condition": "if rain_prob > 50 or max_temp_c < 8",
+      "min_multiplier": 1.05,
+      "max_multiplier": 1.15,
+      "notes": "Orientarium ma pawilony ogrzewane i jest mniej wrazliwe na zla pogode.",
+      "source_refs": "S07",
+      "confidence": 0.52
+    },
+    {
+      "object_id": "orientarium",
+      "feature": "severe_storm",
+      "condition": "if storm_risk >= 0.6",
+      "min_multiplier": 0.8,
+      "max_multiplier": 0.9,
+      "notes": "Ryzyko dojazdu i decyzji rodzinnych moze zejsc nizej mimo atrakcji wewnetrznych.",
+      "source_refs": "model_prior",
+      "confidence": 0.4
+    },
+    {
+      "object_id": "orientarium",
+      "feature": "sunny_weekend_mild",
+      "condition": "if 12 <= max_temp_c <= 26 and precip_prob < 30 and weekend",
+      "min_multiplier": 1.1,
+      "max_multiplier": 1.25,
+      "notes": "Dobra pogoda wzmacnia ogrod zewnetrzny i wyjazdy rodzinne.",
+      "source_refs": "S07,S08",
+      "confidence": 0.5
+    },
+    {
+      "object_id": "orientarium",
+      "feature": "heat_gt_30",
+      "condition": "if max_temp_c > 30",
+      "min_multiplier": 0.95,
+      "max_multiplier": 1.05,
+      "notes": "Ogrody moga tracic komfort, ale turystyka wakacyjna utrzymuje wolumen.",
+      "source_refs": "S09",
+      "confidence": 0.45
+    }
+  ],
+  "calendar_rules": [
+    {
+      "object_id": "fala",
+      "feature": "lodzkie_winter_break",
+      "condition": "2026-02-02 to 2026-02-15",
+      "effect_type": "daily_multiplier",
+      "multiplier_or_overlay": 1.6,
+      "notes": "PDF wskazuje +60% ruchu na basenach w ferie.",
+      "source_refs": "S01,S10",
+      "confidence": 0.7
+    },
+    {
+      "object_id": "fala",
+      "feature": "school_summer_break",
+      "condition": "2026-06-27 to 2026-08-31",
+      "effect_type": "daily_multiplier",
+      "multiplier_or_overlay": 1.35,
+      "notes": "Wakacje zwiekszaja baze, a pogoda robi dodatkowy mnoznik.",
+      "source_refs": "S06,S11",
+      "confidence": 0.62
+    },
+    {
+      "object_id": "fala",
+      "feature": "majowka_or_corpus_christi",
+      "condition": "public holiday / bridge day",
+      "effect_type": "daily_multiplier",
+      "multiplier_or_overlay": 1.7,
+      "notes": "Oblozenie moze dochodzic do 100% juz od 11:00.",
+      "source_refs": "S01,S05",
+      "confidence": 0.58
+    },
+    {
+      "object_id": "fala",
+      "feature": "naturist_night_or_special_event",
+      "condition": "event_calendar",
+      "effect_type": "override",
+      "multiplier_or_overlay": 1.0,
+      "notes": "Nie mnozyc automatycznie bez flagi. Zdarzenie zmienia segment i dostepnosc czesci obiektu.",
+      "source_refs": "S01",
+      "confidence": 0.55
+    },
+    {
+      "object_id": "orientarium",
+      "feature": "school_trip_season",
+      "condition": "mar-jun tue-thu 10:00-13:00",
+      "effect_type": "hourly_overlay",
+      "multiplier_or_overlay": 1.25,
+      "notes": "Przedpoludnia wt.-czw. wypelnione grupami szkolnymi.",
+      "source_refs": "S01",
+      "confidence": 0.6
+    },
+    {
+      "object_id": "orientarium",
+      "feature": "summer_tourism",
+      "condition": "jul-aug",
+      "effect_type": "daily_multiplier",
+      "multiplier_or_overlay": 1.55,
+      "notes": "Sierpien 2025 przekroczyl 190 tys. osob.",
+      "source_refs": "S09",
+      "confidence": 0.7
+    },
+    {
+      "object_id": "orientarium",
+      "feature": "feeding_events",
+      "condition": "according_to_daily_schedule",
+      "effect_type": "hourly_overlay",
+      "multiplier_or_overlay": 1.2,
+      "notes": "Karmienia tworza waskie gardla i migracje tlumu.",
+      "source_refs": "S01,S07",
+      "confidence": 0.65
+    },
+    {
+      "object_id": "orientarium",
+      "feature": "public_holiday_or_bridge",
+      "condition": "public holiday / bridge day",
+      "effect_type": "daily_multiplier",
+      "multiplier_or_overlay": 1.8,
+      "notes": "Rodzinny i turystyczny pik od 10:30 do 16:00.",
+      "source_refs": "S01",
+      "confidence": 0.58
+    }
+  ],
+  "bottlenecks": [
+    {
+      "object_id": "orientarium",
+      "time": "10:00",
+      "event": "Papuga Kea",
+      "local_multiplier": 1.05,
+      "crowd_status": "niski",
+      "notes": "Obiekt dopiero sie napelnia. Dobry czas na spokojne wejscie.",
+      "source_refs": "S01",
+      "confidence": 0.65
+    },
+    {
+      "object_id": "orientarium",
+      "time": "11:00",
+      "event": "Slonie - kapiel i karmienie",
+      "local_multiplier": 1.45,
+      "crowd_status": "krytyczny",
+      "notes": "Najwiekszy zator. Modelowac wysokie lokalne zagestszczenie 10:45-11:25.",
+      "source_refs": "S01,S07",
+      "confidence": 0.72
+    },
+    {
+      "object_id": "orientarium",
+      "time": "11:30",
+      "event": "Kapibary",
+      "local_multiplier": 1.25,
+      "crowd_status": "wysoki",
+      "notes": "Przejscie fali po sloniach.",
+      "source_refs": "S01",
+      "confidence": 0.65
+    },
+    {
+      "object_id": "orientarium",
+      "time": "12:00",
+      "event": "Wyderki orientalne / leniuchowce",
+      "local_multiplier": 1.2,
+      "crowd_status": "wysoki",
+      "notes": "Rozproszenie po pawilonach.",
+      "source_refs": "S01",
+      "confidence": 0.65
+    },
+    {
+      "object_id": "orientarium",
+      "time": "13:00",
+      "event": "Orangutany",
+      "local_multiplier": 1.35,
+      "crowd_status": "bardzo wysoki",
+      "notes": "Drugie najwieksze waskie gardlo.",
+      "source_refs": "S01",
+      "confidence": 0.7
+    },
+    {
+      "object_id": "orientarium",
+      "time": "17:30",
+      "event": "Slonie - popoludniowy pokaz",
+      "local_multiplier": 1.2,
+      "crowd_status": "wysoki",
+      "notes": "Mniejszy niz 11:00, ale widoczny lokalny pik.",
+      "source_refs": "S01,S07",
+      "confidence": 0.62
+    },
+    {
+      "object_id": "fala",
+      "time": "09:00-10:00",
+      "event": "Weekendowy start",
+      "local_multiplier": 0.75,
+      "crowd_status": "niski",
+      "notes": "Najlepsze okno wejscia, szczegolnie latem.",
+      "source_refs": "S01",
+      "confidence": 0.6
+    },
+    {
+      "object_id": "fala",
+      "time": "11:00-14:00",
+      "event": "Weekend / swieto / goraco",
+      "local_multiplier": 1.35,
+      "crowd_status": "krytyczny",
+      "notes": "Zatory na wejsciu, w szatniach i przy atrakcjach.",
+      "source_refs": "S01,S05,S06",
+      "confidence": 0.65
+    },
+    {
+      "object_id": "fala",
+      "time": "16:00-19:00",
+      "event": "Dzien roboczy",
+      "local_multiplier": 1.3,
+      "crowd_status": "wysoki",
+      "notes": "Powroty z pracy, sekcje plywackie, sauna jesien-zima.",
+      "source_refs": "S01",
+      "confidence": 0.62
+    },
+    {
+      "object_id": "fala",
+      "time": "20:00-22:00",
+      "event": "Wieczor letni lub po pracy",
+      "local_multiplier": 0.85,
+      "crowd_status": "sredni-niski",
+      "notes": "Dobre okno dla komfortu, poza eventami i piatkiem w saunach.",
+      "source_refs": "S01,S02",
+      "confidence": 0.55
+    }
+  ],
+  "sources": [
+    {
+      "id": "S01",
+      "source": "PDF uzytkownika: fala_orientarium_kompendium.pdf",
+      "url": "plik lokalny w rozmowie",
+      "used_for": "sygnaly sezonowe, mikropiki godzinowe, waskie gardla Orientarium, wnioski o zachowaniach odwiedzajacych",
+      "confidence": "0.75 - dobre jako kompendium operacyjne, wymaga kalibracji realnymi danymi kasowymi"
+    },
+    {
+      "id": "S02",
+      "source": "Aquapark Fala - oficjalne godziny otwarcia strefy basenowej i saun",
+      "url": "https://aquapark.lodz.pl/strefa-basenowa/godziny-otwarcia/",
+      "used_for": "okna operacyjne Fali: baseny 9:00-22:00, poranne plywanie 7:00-8:30 wt.-pt., sauny",
+      "confidence": "0.95"
+    },
+    {
+      "id": "S03",
+      "source": "Turystyczny Portal Lodzi - 18 lat Fali, rekord frekwencji",
+      "url": "https://lodz.travel/aktualnosci-lodzkiej-organizacji-turystycznej/artykul-lot/osiemnascie-lat-aquaparku-fala-jubileusz-rekordy-frekwencji-i-ambitne-plany-na-przyszlosc-id63247/2026/2/2/",
+      "used_for": "Fala 1,55 mln gosci w ostatnim roku",
+      "confidence": "0.85"
+    },
+    {
+      "id": "S04",
+      "source": "Lodz.pl - rekordy po styczniu 2025",
+      "url": "https://lodz.pl/artykul/rekordy-w-orientarium-zoo-lodz-i-aquaparku-fala-ile-osob-odwiedzilo-zdrowie-66002/",
+      "used_for": "Fala: blisko 117 tys. w styczniu 2025; Orientarium: ponad 47 tys. w styczniu 2025 i ok. 1 mln w 2024",
+      "confidence": "0.85"
+    },
+    {
+      "id": "S05",
+      "source": "Aquapark Fala - otwarcie basenow zewnetrznych 2025",
+      "url": "https://aquapark.lodz.pl/kalendarz/wydarzenie/aquapark-fala-otwiera-baseny-zewnetrzne-id119225/2025/04/28/",
+      "used_for": "zewnetrzne baseny od 1 maja do 4 maja 9:00-22:00, pozniej zaleznie od pogody",
+      "confidence": "0.85"
+    },
+    {
+      "id": "S06",
+      "source": "Aquapark Fala - wakacyjne otwarcie od rana 2025",
+      "url": "https://aquapark.lodz.pl/aktualnosci/artykul/w-wakacje-fala-czynna-od-samego-rana-id126250/2025/06/25/",
+      "used_for": "wakacyjny profil godzinowy: strefa basenowa od 8:00, poranne plywanie 7:00-8:00 poza poniedzialkami",
+      "confidence": "0.80 - historyczna zasada sezonowa do priory"
+    },
+    {
+      "id": "S07",
+      "source": "Orientarium Zoo Lodz - oficjalne godziny otwarcia",
+      "url": "https://orientarium.lodz.pl/godziny-otwarcia/",
+      "used_for": "Orientarium 9:00-19:00, ostatnie wejscie 18:00, pawilony do 18:45, kasy 9:00-18:00",
+      "confidence": "0.95"
+    },
+    {
+      "id": "S08",
+      "source": "Orientarium Zoo Lodz - zmiana godzin od 1 kwietnia 2026",
+      "url": "https://orientarium.lodz.pl/zmiana-godzin-otwarcia-w-zoo/",
+      "used_for": "potwierdzenie wydluzonych godzin 9:00-19:00 i ogrodu 9:00-18:45",
+      "confidence": "0.90"
+    },
+    {
+      "id": "S09",
+      "source": "Orientarium Zoo Lodz - rekordowa frekwencja sierpien 2025",
+      "url": "https://orientarium.lodz.pl/rekordowa-frekwencja-w-sierpniu/",
+      "used_for": "ponad 190 tys. osob w sierpniu 2025, najlepszy miesiac od otwarcia, struktura 70% turysci / 30% lodzianie",
+      "confidence": "0.90"
+    },
+    {
+      "id": "S10",
+      "source": "MEN / gov.pl - terminy ferii zimowych 2025/2026",
+      "url": "https://www.gov.pl/web/edukacja/terminy-ferii-zimowych-w-roku-szkolnym-20252026",
+      "used_for": "ferie lodzkie 2-15 lutego 2026 oraz ogolna zmienna calendar_school_break",
+      "confidence": "0.95"
+    },
+    {
+      "id": "S11",
+      "source": "MEN / gov.pl - kalendarz roku szkolnego 2025/2026",
+      "url": "https://www.gov.pl/web/edukacja/kalendarz-roku-szkolnego-20252026",
+      "used_for": "wakacje, przerwy szkolne, horyzont sezonowy",
+      "confidence": "0.95"
+    },
+    {
+      "id": "S12",
+      "source": "Parkmag / Wiadomosci Turystyczne - podsumowanie atrakcji Lodzi 2025",
+      "url": "https://parkmag.pl/aquapark-fala-i-orientarium-wsrod-najczesciej-odwiedzanych-atrakcji-lodzi-w-2025-roku/",
+      "used_for": "orientacyjny benchmark Orientarium ok. 1,4 mln odwiedzajacych w 2025 - secondary source",
+      "confidence": "0.60 - traktowac jako wartosc robocza do kalibracji"
+    }
+  ],
+  "recommended_formula": "daily_pred = base_daily * month_factor * dow_factor * calendar_factor * weather_factor * event_factor * marketing_factor; hourly_pred[h] = daily_pred * hourly_share[h] * bottleneck_overlay[h]"
+}
