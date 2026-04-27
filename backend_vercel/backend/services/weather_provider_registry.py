@@ -18,7 +18,6 @@ PROVIDER_DEFINITIONS = [
     {"provider": "openweather-forecast", "role": "provider A forecast", "active": True},
     {"provider": "open-meteo-forecast", "role": "provider B forecast", "active": True},
     {"provider": "meteosource-30day", "role": "optional 30-day forecast provider", "active": True},
-    {"provider": "ncep-cfs-30day", "role": "free 30-day NOAA NCEP CFS ensemble", "active": True},
     {"provider": "open-meteo-history", "role": "historical actual weather", "active": True},
     {"provider": "open-meteo-historical-forecast", "role": "archived forecast", "active": True},
     {"provider": "met-no-locationforecast", "role": "independent forecast comparison", "active": True},
@@ -76,8 +75,6 @@ def fetch_weather_inputs(
                 record = _fetch_open_meteo_forecast(latitude, longitude, target_date)
             elif name == "meteosource-30day" and relation in {"today", "forecast"}:
                 record = _fetch_meteosource_forecast(latitude, longitude, target_date)
-            elif name == "ncep-cfs-30day" and relation in {"today", "forecast"}:
-                record = _fetch_ncep_cfs_seasonal(latitude, longitude, target_date)
             elif name == "open-meteo-history" and relation == "historical":
                 record = _fetch_open_meteo_history(latitude, longitude, target_date)
             elif name == "open-meteo-historical-forecast" and relation == "historical" and target_date >= date(2022, 1, 1):
@@ -266,80 +263,6 @@ def _fetch_meteosource_forecast(latitude: float, longitude: float, target_date: 
         rain=precipitation,
         cloud_cover=item.get("cloud_cover"),
         wind_speed=wind,
-    )
-
-
-def _fetch_ncep_cfs_seasonal(latitude: float, longitude: float, target_date: date) -> dict[str, Any] | None:
-    settings = get_settings()
-    today = warsaw_now().date()
-    if not (today <= target_date <= today + timedelta(days=30)):
-        return None
-    forecast_days = max(1, min(32, (target_date - today).days + 1))
-    params = {
-        "latitude": latitude,
-        "longitude": longitude,
-        "timezone": settings.default_timezone,
-        "forecast_days": forecast_days,
-        "daily": "temperature_2m_max,temperature_2m_min,precipitation_sum,wind_speed_10m_max,cloud_cover_mean,relative_humidity_2m_mean,pressure_msl_mean",
-    }
-    with httpx.Client(timeout=settings.api_timeout_seconds) as client:
-        response = client.get("https://seasonal-api.open-meteo.com/v1/seasonal", params=params)
-        response.raise_for_status()
-        payload = response.json()
-    daily = payload.get("daily", {}) or {}
-    times = daily.get("time", []) or []
-    target_iso = target_date.isoformat()
-    if target_iso not in times:
-        return None
-    idx = times.index(target_iso)
-
-    def _ensemble_mean(field: str) -> float | None:
-        members = [key for key in daily.keys() if key.startswith(f"{field}_member") and isinstance(daily.get(key), list)]
-        values: list[float] = []
-        for member_key in members:
-            series = daily.get(member_key) or []
-            if idx < len(series):
-                value = number(series[idx])
-                if value is not None:
-                    values.append(float(value))
-        if not values:
-            base_series = daily.get(field) or []
-            if idx < len(base_series):
-                value = number(base_series[idx])
-                if value is not None:
-                    return float(value)
-            return None
-        return sum(values) / len(values)
-
-    temp_max = _ensemble_mean("temperature_2m_max")
-    temp_min = _ensemble_mean("temperature_2m_min")
-    if temp_max is None and temp_min is None:
-        return None
-    if temp_max is not None and temp_min is not None:
-        temperature = (temp_max + temp_min) / 2
-    else:
-        temperature = temp_max if temp_max is not None else temp_min
-    precipitation = _ensemble_mean("precipitation_sum")
-    cloud_cover = _ensemble_mean("cloud_cover_mean")
-    wind_speed = _ensemble_mean("wind_speed_10m_max")
-    humidity = _ensemble_mean("relative_humidity_2m_mean")
-    pressure = _ensemble_mean("pressure_msl_mean")
-    horizon_days = max(0, (target_date - today).days)
-    confidence = round(max(0.45, 0.78 - horizon_days * 0.011), 2)
-    return normalized_weather_record(
-        target_datetime=_target_noon(target_date),
-        provider="ncep-cfs-30day",
-        fetched_at=warsaw_now(),
-        provider_confidence=confidence,
-        temperature=temperature,
-        apparent_temperature=temperature,
-        precipitation=precipitation,
-        rain=precipitation,
-        cloud_cover=cloud_cover,
-        humidity=humidity,
-        wind_speed=wind_speed,
-        pressure=pressure,
-        weather_description="NOAA NCEP CFS ensemble mean",
     )
 
 

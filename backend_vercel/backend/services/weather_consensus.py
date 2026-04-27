@@ -352,8 +352,6 @@ def _provider_key(provider: str | None) -> str:
     value = provider or ""
     if "openweather" in value:
         return "openweather"
-    if "ncep-cfs" in value:
-        return "ncep-cfs"
     if "open-meteo" in value or "openmeteo" in value:
         return "openmeteo"
     if "meteosource" in value:
