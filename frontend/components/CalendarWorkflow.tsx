@@ -9,7 +9,7 @@ import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { RiskDot } from "@/components/RiskDot";
 import { VenueSwitcher } from "@/components/VenueSwitcher";
 import { WeatherIcon } from "@/components/WeatherIcon";
-import { addMonths, formatDateLabel, formatVisitors, relationLabel, riskLabel, riskTone, translateBackendText } from "@/lib/formatting";
+import { addMonths, formatDateLabel, formatVisitors, providerLabel, relationLabel, riskLabel, riskTone, translateBackendText } from "@/lib/formatting";
 import { getCachedCalendar, loadCalendar, primeCalendar } from "@/lib/clientApi";
 import type { CalendarDay, CalendarResponse, VenueSummary } from "@/lib/types";
 
@@ -109,15 +109,7 @@ export function CalendarWorkflow({ calendar: initialCalendar, venues, venueSlug,
         <aside className="space-y-2.5 xl:space-y-3">
           <SelectedDayPanel day={selectedDay} venueSlug={venueSlug} currentDate={currentDate} />
           <BestDays days={calendar.days} onSelectDay={setSelectedDate} />
-          <div className="soft-panel p-3">
-            <div className="flex items-center gap-2">
-              <Database className="h-4 w-4 text-brand-blue" strokeWidth={1.45} />
-              <p className="font-body text-xs font-semibold text-ink">Źródła</p>
-            </div>
-            <p className="mt-2 font-body text-[11px] leading-4 text-ink-soft">
-              {sourceLinePolish(calendar.weather_consensus_summary, calendar.calibration_summary)}
-            </p>
-          </div>
+          <SourcesPanel summary={calendar.weather_consensus_summary} calibration={calendar.calibration_summary} />
         </aside>
       </div>
     </section>
@@ -214,13 +206,35 @@ function BestDays({ days, onSelectDay }: { days: CalendarDay[]; onSelectDay: (da
   );
 }
 
-function sourceLinePolish(weather: unknown, calibration: unknown): string {
-  const weatherObj = weather as { providers_used_this_month?: string[]; incomplete_days?: string[] } | undefined;
+function SourcesPanel({ summary, calibration }: { summary: unknown; calibration: unknown }) {
+  const weatherObj = summary as { providers_used_this_month?: string[]; incomplete_days?: string[] } | undefined;
   const calibrationObj = calibration as { status?: string } | undefined;
-  const count = weatherObj?.providers_used_this_month?.length ?? 0;
+  const providers = weatherObj?.providers_used_this_month ?? [];
   const incomplete = weatherObj?.incomplete_days?.length ?? 0;
   const calibrationLabel = calibrationObj?.status ? translateBackendText(calibrationObj.status) : "kalibracja frekwencji";
 
-  if (incomplete > 0) return `${calibrationLabel}. Dane częściowe pogody dla ${incomplete} dni.`;
-  return count > 0 ? `${count} źródła pogody, ${calibrationLabel}.` : `${calibrationLabel}, dane pogodowe według dostępności.`;
+  return (
+    <div className="soft-panel p-3">
+      <div className="flex items-center gap-2">
+        <Database className="h-4 w-4 text-brand-blue" strokeWidth={1.45} />
+        <p className="font-body text-xs font-semibold text-ink">Źródła pogody</p>
+      </div>
+      {providers.length ? (
+        <ul className="mt-2 divide-y divide-line rounded-[10px] border border-line">
+          {providers.map((provider) => (
+            <li key={provider} className="flex items-center justify-between gap-2 px-2 py-1.5 font-body text-[11px]">
+              <span className="truncate text-ink">{providerLabel(provider)}</span>
+              <span className="rounded-[6px] bg-[#eef4ff] px-1.5 py-0.5 font-semibold uppercase tracking-wide text-brand-blue">live</span>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p className="mt-2 font-body text-[11px] leading-4 text-ink-soft">Brak danych pogodowych w tym miesiącu.</p>
+      )}
+      <p className="mt-2 font-body text-[11px] leading-4 text-ink-soft">
+        {providers.length > 1 ? `Konsensus uśrednia ${providers.length} źródła.` : "Pojedyncze źródło pogody."} {incomplete > 0 ? `Dane częściowe dla ${incomplete} dni. ` : ""}
+        Frekwencja: {calibrationLabel}.
+      </p>
+    </div>
+  );
 }

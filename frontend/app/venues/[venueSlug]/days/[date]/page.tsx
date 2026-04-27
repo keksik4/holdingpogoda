@@ -133,7 +133,7 @@ function WeatherConsensusPanel({ details, providers }: { details: DayDetailsResp
   const consensus = details.weather_consensus;
   const probability = details.weather_details.precipitation_probability ?? consensus?.precipitationProbability ?? consensus?.precipitation_probability_avg;
   const temperature = details.weather_details.temperature ?? consensus?.temperatureC ?? consensus?.temperature_avg;
-  const sourceEntries = Object.entries(consensus?.sources ?? {}).slice(0, 2);
+  const sourceEntries = Object.entries(consensus?.sources ?? {});
   return (
     <div className="soft-panel p-3">
       <div className="flex items-start justify-between gap-3">
@@ -150,7 +150,7 @@ function WeatherConsensusPanel({ details, providers }: { details: DayDetailsResp
         <MiniSignal label="Źródła" value={providers.length ? `${providers.length}` : "1"} />
       </div>
       <div className="mt-3 divide-y divide-line rounded-[10px] border border-line">
-        {(sourceEntries.length ? sourceEntries : providers.map((provider) => [provider, undefined] as const)).slice(0, 3).map(([provider, source]) => (
+        {(sourceEntries.length ? sourceEntries : providers.map((provider) => [provider, undefined] as const)).slice(0, 6).map(([provider, source]) => (
           <div key={provider} className="grid grid-cols-[92px_1fr_52px] items-center gap-2 px-2 py-1.5 font-body text-[11px]">
             <span className="truncate text-ink-soft">{providerLabel(provider)}</span>
             <span className="truncate text-ink">{source?.conditionLabel ? translateBackendText(source.conditionLabel) : weatherLabel(details.weather_details.weather_icon)}</span>
