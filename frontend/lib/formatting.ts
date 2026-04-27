@@ -113,6 +113,7 @@ export function venueDescription(venueSlug: string, fallback: string): string {
 export function providerLabel(provider: string): string {
   const normalized = normalize(provider);
   if (normalized.includes("openweather")) return "OpenWeather";
+  if (normalized.includes("ncep-cfs")) return "NOAA NCEP CFS";
   if (normalized.includes("open-meteo") || normalized.includes("openmeteo")) return "Open-Meteo";
   if (normalized.includes("meteosource")) return "Meteosource";
   if (normalized.includes("met-no")) return "MET Norway";

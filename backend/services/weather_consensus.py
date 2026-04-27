@@ -331,7 +331,7 @@ def _normalized_sources(records: list[dict[str, Any]]) -> dict[str, dict[str, An
     sources: dict[str, dict[str, Any]] = {}
     for record in records:
         key = _provider_key(record.get("provider"))
-        if key not in {"openweather", "openmeteo", "meteosource"}:
+        if key in {"seasonal-calibration-proxy", ""}:
             continue
         sources[key] = {
             "datetime": record.get("target_datetime"),
@@ -352,10 +352,18 @@ def _provider_key(provider: str | None) -> str:
     value = provider or ""
     if "openweather" in value:
         return "openweather"
+    if "ncep-cfs" in value:
+        return "ncep-cfs"
     if "open-meteo" in value or "openmeteo" in value:
         return "openmeteo"
     if "meteosource" in value:
         return "meteosource"
+    if "met-no" in value:
+        return "met-no"
+    if "imgw" in value:
+        return "imgw"
+    if "seasonal-calibration" in value:
+        return "seasonal-calibration-proxy"
     return value
 
 
